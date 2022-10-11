@@ -39,7 +39,7 @@
                                     <fontDescription key="titleFontDescription" type="system" pointSize="30"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="IuA-Jm-o1j" kind="push" id="wyf-fn-cYn"/>
+                                    <segue destination="IuA-Jm-o1j" kind="show" id="JTj-Kj-hDR"/>
                                 </connections>
                             </button>
                         </subviews>
