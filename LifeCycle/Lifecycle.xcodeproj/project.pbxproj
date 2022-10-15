@@ -22,7 +22,7 @@
 /* Begin PBXFileReference section */
 		765FC89F28FACF80002A4BE0 /* TabFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabFirstViewController.swift; sourceTree = "<group>"; };
 		765FC8A128FAD1C4002A4BE0 /* TabSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabSecondViewController.swift; sourceTree = "<group>"; };
-		76CA019C28F549E0004ECD4F /* week_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = week_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		76CA019C28F549E0004ECD4F /* Lifecycle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lifecycle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76CA019F28F549E0004ECD4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76CA01A128F549E0004ECD4F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		76CA01A328F549E0004ECD4F /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -48,7 +48,7 @@
 		76CA019328F549E0004ECD4F = {
 			isa = PBXGroup;
 			children = (
-				76CA019E28F549E0004ECD4F /* week_1 */,
+				76CA019E28F549E0004ECD4F /* Lifecycle */,
 				76CA019D28F549E0004ECD4F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,12 +56,12 @@
 		76CA019D28F549E0004ECD4F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				76CA019C28F549E0004ECD4F /* week_1.app */,
+				76CA019C28F549E0004ECD4F /* Lifecycle.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		76CA019E28F549E0004ECD4F /* week_1 */ = {
+		76CA019E28F549E0004ECD4F /* Lifecycle */ = {
 			isa = PBXGroup;
 			children = (
 				76CA019F28F549E0004ECD4F /* AppDelegate.swift */,
@@ -76,15 +76,15 @@
 				76CA01B028F549E3004ECD4F /* Info.plist */,
 				76CA01A828F549E0004ECD4F /* week_1.xcdatamodeld */,
 			);
-			path = week_1;
+			path = Lifecycle;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		76CA019B28F549E0004ECD4F /* week_1 */ = {
+		76CA019B28F549E0004ECD4F /* Lifecycle */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 76CA01B328F549E3004ECD4F /* Build configuration list for PBXNativeTarget "week_1" */;
+			buildConfigurationList = 76CA01B328F549E3004ECD4F /* Build configuration list for PBXNativeTarget "Lifecycle" */;
 			buildPhases = (
 				76CA019828F549E0004ECD4F /* Sources */,
 				76CA019928F549E0004ECD4F /* Frameworks */,
@@ -94,9 +94,9 @@
 			);
 			dependencies = (
 			);
-			name = week_1;
+			name = Lifecycle;
 			productName = week_1;
-			productReference = 76CA019C28F549E0004ECD4F /* week_1.app */;
+			productReference = 76CA019C28F549E0004ECD4F /* Lifecycle.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -114,7 +114,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 76CA019728F549E0004ECD4F /* Build configuration list for PBXProject "week_1" */;
+			buildConfigurationList = 76CA019728F549E0004ECD4F /* Build configuration list for PBXProject "Lifecycle" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -127,7 +127,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				76CA019B28F549E0004ECD4F /* week_1 */,
+				76CA019B28F549E0004ECD4F /* Lifecycle */,
 			);
 		};
 /* End PBXProject section */
@@ -305,7 +305,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y7PRM9H29K;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = week_1/Info.plist;
+				INFOPLIST_FILE = Lifecycle/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -333,7 +333,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y7PRM9H29K;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = week_1/Info.plist;
+				INFOPLIST_FILE = Lifecycle/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -355,7 +355,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		76CA019728F549E0004ECD4F /* Build configuration list for PBXProject "week_1" */ = {
+		76CA019728F549E0004ECD4F /* Build configuration list for PBXProject "Lifecycle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				76CA01B128F549E3004ECD4F /* Debug */,
@@ -364,7 +364,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		76CA01B328F549E3004ECD4F /* Build configuration list for PBXNativeTarget "week_1" */ = {
+		76CA01B328F549E3004ECD4F /* Build configuration list for PBXNativeTarget "Lifecycle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				76CA01B428F549E3004ECD4F /* Debug */,
