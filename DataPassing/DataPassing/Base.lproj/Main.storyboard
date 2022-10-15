@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--First View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="FirstViewController" id="BYZ-38-t0r" customClass="FirstViewController" customModule="DataPassing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="fpZ-8W-gnx">
+                                <rect key="frame" x="65" y="395" width="284.5" height="106"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aTf-Oq-qP1">
+                                        <rect key="frame" x="0.0" y="0.0" width="284.5" height="38"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Data passing with segue">
+                                            <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="dataPassingWithSegue:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bXh-YL-bmQ"/>
+                                            <segue destination="kkR-VS-WMw" kind="presentation" identifier="DataPass" id="DkF-vW-z8b"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="msA-Mh-3wi">
+                                        <rect key="frame" x="0.0" y="68" width="284.5" height="38"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Data passing without segue">
+                                            <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="dataPassingWithoutSegue:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bDT-r4-SpR"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Data" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SaO-Rf-unK">
+                                <rect key="frame" x="50" y="207" width="314" height="34"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="SaO-Rf-unK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="3yf-f7-uUd"/>
+                            <constraint firstItem="SaO-Rf-unK" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.5" id="5FX-To-mFU"/>
+                            <constraint firstItem="fpZ-8W-gnx" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="CyQ-2r-E7h"/>
+                            <constraint firstItem="fpZ-8W-gnx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SXG-ag-5xj"/>
+                            <constraint firstItem="SaO-Rf-unK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="riE-5d-vD4"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SaO-Rf-unK" secondAttribute="trailing" constant="50" id="vqH-4k-CBH"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="textField" destination="SaO-Rf-unK" id="dKP-CE-uYY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-16" y="98"/>
+        </scene>
+        <!--Second View Controller-->
+        <scene sceneID="yfA-fx-uwu">
+            <objects>
+                <viewController storyboardIdentifier="SecondViewController" modalPresentationStyle="fullScreen" id="kkR-VS-WMw" customClass="SecondViewController" customModule="DataPassing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HzH-t0-jJ0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Data" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oU3-tC-gkV">
+                                <rect key="frame" x="50" y="207" width="314" height="34"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="BS3-cd-hOl">
+                                <rect key="frame" x="52.5" y="327" width="309" height="242"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kpq-tg-lOr">
+                                        <rect key="frame" x="0.0" y="0.0" width="309" height="38"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Back">
+                                            <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="back:" destination="kkR-VS-WMw" eventType="touchUpInside" id="yXl-wE-tFr"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R8X-a7-iiz">
+                                        <rect key="frame" x="0.0" y="68" width="309" height="38"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Update and back(Delegate)">
+                                            <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="updateAndBackWithDelegate:" destination="kkR-VS-WMw" eventType="touchUpInside" id="c00-6x-L4M"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u0q-0P-tAD">
+                                        <rect key="frame" x="0.0" y="136" width="309" height="38"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Update and back(Closure)">
+                                            <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="updateAndBackWithClosure:" destination="kkR-VS-WMw" eventType="touchUpInside" id="qNY-eV-QEC"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7V-oy-Eb7">
+                                        <rect key="frame" x="0.0" y="204" width="309" height="38"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Update and back(Notification)">
+                                            <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="updateAndBackWithNotification:" destination="kkR-VS-WMw" eventType="touchUpInside" id="KuV-uM-Dyy"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="wzg-a0-IeS"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="BS3-cd-hOl" firstAttribute="centerY" secondItem="HzH-t0-jJ0" secondAttribute="centerY" id="3ox-p3-wW0"/>
+                            <constraint firstItem="oU3-tC-gkV" firstAttribute="centerY" secondItem="HzH-t0-jJ0" secondAttribute="centerY" multiplier="0.5" id="5H7-7l-yHy"/>
+                            <constraint firstItem="oU3-tC-gkV" firstAttribute="centerX" secondItem="HzH-t0-jJ0" secondAttribute="centerX" id="5Xx-2f-ZiG"/>
+                            <constraint firstItem="wzg-a0-IeS" firstAttribute="trailing" secondItem="oU3-tC-gkV" secondAttribute="trailing" constant="50" id="6qp-nH-LFQ"/>
+                            <constraint firstItem="BS3-cd-hOl" firstAttribute="centerX" secondItem="HzH-t0-jJ0" secondAttribute="centerX" id="nX8-xE-xcC"/>
+                            <constraint firstItem="oU3-tC-gkV" firstAttribute="leading" secondItem="wzg-a0-IeS" secondAttribute="leading" constant="50" id="rwp-Y5-A9E"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="textField" destination="oU3-tC-gkV" id="MrK-pB-liH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="odW-KE-tAK" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="752" y="-315"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
