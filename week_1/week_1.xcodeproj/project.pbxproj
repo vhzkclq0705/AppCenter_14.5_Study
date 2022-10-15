@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		765FC8A028FACF80002A4BE0 /* TabFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765FC89F28FACF80002A4BE0 /* TabFirstViewController.swift */; };
+		765FC8A228FAD1C4002A4BE0 /* TabSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765FC8A128FAD1C4002A4BE0 /* TabSecondViewController.swift */; };
 		76CA01A028F549E0004ECD4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA019F28F549E0004ECD4F /* AppDelegate.swift */; };
 		76CA01A228F549E0004ECD4F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA01A128F549E0004ECD4F /* SceneDelegate.swift */; };
 		76CA01A428F549E0004ECD4F /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA01A328F549E0004ECD4F /* FirstViewController.swift */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		765FC89F28FACF80002A4BE0 /* TabFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabFirstViewController.swift; sourceTree = "<group>"; };
+		765FC8A128FAD1C4002A4BE0 /* TabSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabSecondViewController.swift; sourceTree = "<group>"; };
 		76CA019C28F549E0004ECD4F /* week_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = week_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76CA019F28F549E0004ECD4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76CA01A128F549E0004ECD4F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +68,8 @@
 				76CA01A128F549E0004ECD4F /* SceneDelegate.swift */,
 				76CA01A328F549E0004ECD4F /* FirstViewController.swift */,
 				76CA01B628F54C44004ECD4F /* SecondViewController.swift */,
+				765FC89F28FACF80002A4BE0 /* TabFirstViewController.swift */,
+				765FC8A128FAD1C4002A4BE0 /* TabSecondViewController.swift */,
 				76CA01A528F549E0004ECD4F /* Main.storyboard */,
 				76CA01AB28F549E3004ECD4F /* Assets.xcassets */,
 				76CA01AD28F549E3004ECD4F /* LaunchScreen.storyboard */,
@@ -144,6 +150,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				765FC8A228FAD1C4002A4BE0 /* TabSecondViewController.swift in Sources */,
+				765FC8A028FACF80002A4BE0 /* TabFirstViewController.swift in Sources */,
 				76CA01A428F549E0004ECD4F /* FirstViewController.swift in Sources */,
 				76CA01A028F549E0004ECD4F /* AppDelegate.swift in Sources */,
 				76CA01A228F549E0004ECD4F /* SceneDelegate.swift in Sources */,
