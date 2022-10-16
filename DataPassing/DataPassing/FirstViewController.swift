@@ -33,13 +33,19 @@ class FirstViewController: UIViewController {
         
             // 다음 코드가 에러를 발생시키는 이유는?
             // vc.textField.text = self.textField.text
+            vc.text = self.textField.text
             
             // Delegate를 이용한 데이터 전달
-//            vc.delegate = self
+            vc.delegate = self
             
-            // Closure를 이용한 데이터 전달
-//            vc.closure = { text in
-//                self.textField.text = text
+            // Closure를 이용한 데이터 전달 - 1
+            vc.closure = { text in
+                self.textField.text = text
+            }
+            
+            // Closure를 이용한 데이터 전달 - 2
+//            vc.closure = {
+//                self.textField.text = $0
 //            }
             
             // Notification을 이용한 데이터 전달
@@ -48,8 +54,6 @@ class FirstViewController: UIViewController {
                 selector: #selector(updateTextFieldWithNotification(_:)),
                 name: NSNotification.Name("DataPass"),
                 object: nil)
-            
-            vc.text = self.textField.text
         }
     }
     
@@ -67,8 +71,28 @@ class FirstViewController: UIViewController {
             return
         }
         
-        vc.delegate = self
         vc.text = self.textField.text
+        
+        // Delegate를 이용한 데이터 전달
+        vc.delegate = self
+        
+        // Closure를 이용한 데이터 전달 - 1
+        vc.closure = { text in
+            self.textField.text = text
+        }
+        
+        // Closure를 이용한 데이터 전달 - 2
+//            vc.closure = {
+//                self.textField.text = $0
+//            }
+        
+        // Notification을 이용한 데이터 전달
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateTextFieldWithNotification(_:)),
+            name: NSNotification.Name("DataPass"),
+            object: nil)
+        
         vc.modalPresentationStyle = .fullScreen
         
         self.present(vc, animated: true)
