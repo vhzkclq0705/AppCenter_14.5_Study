@@ -176,3 +176,44 @@ class InitializerSubClass: InitializerSuperClass, InitializerProtocol2 {
 
 var initializerClass = InitializerSubClass()
 
+// 실패 가능한 초기자 요구사항
+
+// 프로토콜에서 실패 가능한 이니셜라이저를 선언할 수 있다.
+// 초기화에 실패하면 에러가 발생하지 않고 nil을 리턴한다.
+
+protocol FailableInitializerProtocol {
+    init?()
+}
+
+// MARK: - 타입으로써의 프로토콜 (Protocols as Types)
+
+// 프로토콜도 하나의 타입으로 사용된다.
+// 그렇기 때문에 다음과 같이 타입이 허용되는 모든 곳에 프로토콜을 사용할 수 있다.
+// 1. 함수, 메소드, 이니셜라이저의 파라미터 타입 혹은 리턴 타입
+// 2. 상수, 변수, 프로퍼티의 타입
+// 3. 컨테이너인 배열, 딕셔너리 등의 아이템 타입
+
+protocol TypeProtocol {
+    func roll() -> Int
+}
+
+class ShowTypeProtocol {
+    
+    // 프로퍼티 타입
+    let typeProtocol: TypeProtocol
+    
+    // 파라미터 타입
+    init(typeProtocol: TypeProtocol) {
+        self.typeProtocol = typeProtocol
+    }
+    
+    // 리턴 타입
+    func returnProtocol() -> TypeProtocol {
+        return self.typeProtocol
+    }
+    
+    func roll() -> Int {
+        return typeProtocol.roll()
+    }
+    
+}
