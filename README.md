@@ -4,6 +4,7 @@
 
 <br>
 
-- <a href="https://github.com/vhzkclq0705/AppCenter_14.5_Study/tree/main/LifeCycle"> 라이프 사이클 </a>
-- <a href="https://github.com/vhzkclq0705/AppCenter_14.5_Study/tree/main/DataPassing"> 데이터 전달 </a>
-- <a href="https://github.com/vhzkclq0705/Practice_iOS_Basic/tree/main/Protocol.playground"> 프로토콜 </a>
+- <a href="https://github.com/vhzkclq0705/AppCenter_14.5_Study/tree/main/LifeCycle"> Life cycle </a>
+- <a href="https://github.com/vhzkclq0705/AppCenter_14.5_Study/tree/main/DataPassing"> Data passing </a>
+- <a href="https://github.com/vhzkclq0705/Practice_iOS_Basic/tree/main/Protocol.playground"> Protocol </a>
+- <a href="https://github.com/vhzkclq0705/Practice_iOS_Basic/tree/main/Delegate.playground"> Delegate </a>
