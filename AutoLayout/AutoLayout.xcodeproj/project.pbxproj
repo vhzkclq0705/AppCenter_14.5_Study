@@ -13,6 +13,7 @@
 		76A2034128FC69840055727E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76A2033F28FC69840055727E /* Main.storyboard */; };
 		76A2034328FC69850055727E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76A2034228FC69850055727E /* Assets.xcassets */; };
 		76A2034628FC69850055727E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76A2034428FC69850055727E /* LaunchScreen.storyboard */; };
+		76A2035228FD28730055727E /* PriorityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A2035128FD28730055727E /* PriorityVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		76A2034228FC69850055727E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		76A2034528FC69850055727E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		76A2034728FC69850055727E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		76A2035128FD28730055727E /* PriorityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		76A2033828FC69840055727E /* AutoLayout */ = {
 			isa = PBXGroup;
 			children = (
+				76A2035028FD281F0055727E /* Priority */,
 				76A2034F28FD24E10055727E /* Scroll */,
 				76A2033928FC69840055727E /* AppDelegate.swift */,
 				76A2033B28FC69840055727E /* SceneDelegate.swift */,
@@ -73,6 +76,14 @@
 				76A2033D28FC69840055727E /* ChangeHeightVC.swift */,
 			);
 			path = Scroll;
+			sourceTree = "<group>";
+		};
+		76A2035028FD281F0055727E /* Priority */ = {
+			isa = PBXGroup;
+			children = (
+				76A2035128FD28730055727E /* PriorityVC.swift */,
+			);
+			path = Priority;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +159,7 @@
 			files = (
 				76A2033E28FC69840055727E /* ChangeHeightVC.swift in Sources */,
 				76A2033A28FC69840055727E /* AppDelegate.swift in Sources */,
+				76A2035228FD28730055727E /* PriorityVC.swift in Sources */,
 				76A2033C28FC69840055727E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
