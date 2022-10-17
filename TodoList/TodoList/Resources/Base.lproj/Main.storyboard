@@ -50,6 +50,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="TodoList" id="CMz-Bb-rUP"/>
+                    <connections>
+                        <outlet property="tableView" destination="KHu-qU-O8f" id="Ein-SI-gFg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BvY-Y9-9Kh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
