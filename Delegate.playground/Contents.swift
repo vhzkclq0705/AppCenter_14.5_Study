@@ -3,7 +3,7 @@ import UIKit
 // MARK: - 위임(Delegation)
 
 // delegate는 클래스 혹은 구조체 인스턴스에 특정 행위에 대한 책임을 넘길 수 있게 해주는 디자인 패턴 중 하나이다.
-// delegate를 AnyObject로 선언하면 클래스만 이 프로콜을 따를 수 있게 만들 수 있다.
+// delegate를 AnyObject로 선언하면 클래스만 이 프로토콜을 따를 수 있게 만들 수 있다.
 
 class Student {
     let name: String
@@ -65,3 +65,45 @@ let iOS = IOS()
 iOS.delegate = studyiOS
 iOS.study()
 
+// MARK: - 다른 예시
+
+// Dog와 Cat은 Animal이다.
+// Animal은 밥을 먹어야 한다.(밥을 먹어야 한다는 책임이 있다.)
+// Dog는 멍멍 짖어야 한다.(짖어야 한다는 책임이 있다.)
+// Cat은 야옹 해야 한다.(야옹 해야 한다는 책임이 있다.)
+
+protocol Animal {
+    func eat()
+}
+
+protocol Dog: Animal {
+    func bowwow()
+}
+
+protocol Cat: Animal {
+    func meow()
+}
+
+// Choco는 Dog이기 때문에, 밥을 먹고 멍멍 짖는다.
+
+class Choco: Dog {
+    func bowwow() {
+        print("멍멍")
+    }
+    
+    func eat() {
+        print("와구와구")
+    }
+}
+
+// Cream은 Cat이기 때문에, 밥을 먹고 야옹한다.
+
+class Cream: Cat {
+    func meow() {
+        print("야옹")
+    }
+    
+    func eat() {
+        print("와구와구")
+    }
+}
