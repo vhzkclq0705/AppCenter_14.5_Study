@@ -8,6 +8,8 @@
 import UIKit
 
 class TableViewCell: UITableViewCell {
+    
+    static let id = "cell"
 
     // MARK: - UI
     
@@ -29,7 +31,7 @@ class TableViewCell: UITableViewCell {
     
     // MARK: - Func
     
-    private func updateCell(_ data: DataModel) {
+    func updateCell(_ data: DataModel) {
         nameLabel.text = data.name
         ageLabel.text = "(\(data.age))"
         jobLabel.text = data.job

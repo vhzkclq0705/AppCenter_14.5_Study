@@ -23,6 +23,8 @@ class ViewController: UIViewController {
     
     private let listURL = "https://my.api.mockaroo.com/members_with_avatar.json?key=44ce18f0"
     
+    var dataModels: [DataModel] = []
+    
     // MARK: - Life cycle
     
     override func viewDidLoad() {
@@ -36,6 +38,9 @@ class ViewController: UIViewController {
     private func configureVC() {
         tableView.dataSource = self
         tableView.delegate = self
+        
+        let nib = UINib(nibName: "TableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: TableViewCell.id)
         
         Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
             self?.timerLabel.text = "\(Date().timeIntervalSince1970)"
@@ -170,7 +175,7 @@ extension ViewController: UITableViewDataSource,
         numberOfRowsInSection section: Int)
     -> Int
     {
-        <#code#>
+        dataModels.count
     }
     
     func tableView(
@@ -178,7 +183,15 @@ extension ViewController: UITableViewDataSource,
         cellForRowAt indexPath: IndexPath)
     -> UITableViewCell
     {
-        <#code#>
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: TableViewCell.id) as? TableViewCell else {
+            return UITableViewCell()
+        }
+        
+        let data = dataModels[indexPath.row]
+        cell.updateCell(data)
+        
+        return cell
     }
     
 }
