@@ -73,8 +73,8 @@
 		76597B622920E9DE00F1561B /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				76597B502920E9B800F1561B /* SceneDelegate.swift */,
 				76597B522920E9B800F1561B /* ViewController.swift */,
+				76597B502920E9B800F1561B /* SceneDelegate.swift */,
 				76597B4E2920E9B800F1561B /* AppDelegate.swift */,
 			);
 			path = Sources;
@@ -112,7 +112,6 @@
 				7A5EC8F70B5283F5D900D307 /* Pods-Networking.debug.xcconfig */,
 				D5C3FDB74D13AE3D4005427A /* Pods-Networking.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
