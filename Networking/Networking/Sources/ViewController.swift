@@ -42,9 +42,13 @@ class ViewController: UIViewController {
         let nib = UINib(nibName: "Cell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: Cell.id)
         
-        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
-            self?.timerLabel.text = "\(Date().timeIntervalSince1970)"
-        }
+        let timer = Timer.scheduledTimer(
+            timeInterval: 0.1,
+            target: self,
+            selector: #selector(fetchTime(_:)),
+            userInfo: nil,
+            repeats: true)
+        RunLoop.current.add(timer, forMode: .common)
     }
     
     private func setVisibleWithAnimation(_ s: Bool) {
@@ -72,6 +76,10 @@ class ViewController: UIViewController {
     }
     
     // MARK: - Action
+    
+    @objc func fetchTime(_ sender: Any) {
+        timerLabel.text = "\(Date().timeIntervalSince1970)"
+    }
     
     @IBAction func didTapLoadButton(_ sender: Any) {
         jsonTextView.text = ""
