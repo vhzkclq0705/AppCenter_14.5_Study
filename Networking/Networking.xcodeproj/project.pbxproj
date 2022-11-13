@@ -15,8 +15,10 @@
 		76597B582920E9BA00F1561B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76597B572920E9BA00F1561B /* Assets.xcassets */; };
 		76597B5B2920E9BA00F1561B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76597B592920E9BA00F1561B /* LaunchScreen.storyboard */; };
 		76597B662921002E00F1561B /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76597B652921002E00F1561B /* DataModel.swift */; };
-		76597B6C2921039000F1561B /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76597B6A2921039000F1561B /* TableViewCell.swift */; };
-		76597B6D2921039000F1561B /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76597B6B2921039000F1561B /* TableViewCell.xib */; };
+		76597B6C2921039000F1561B /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76597B6A2921039000F1561B /* Cell.swift */; };
+		76597B6D2921039000F1561B /* Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76597B6B2921039000F1561B /* Cell.xib */; };
+		76597B722921256C00F1561B /* JSONString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76597B712921256C00F1561B /* JSONString.swift */; };
+		76597B74292125F400F1561B /* JSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76597B73292125F400F1561B /* JSONModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,8 +31,10 @@
 		76597B5A2920E9BA00F1561B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		76597B5C2920E9BA00F1561B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76597B652921002E00F1561B /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
-		76597B6A2921039000F1561B /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
-		76597B6B2921039000F1561B /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		76597B6A2921039000F1561B /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		76597B6B2921039000F1561B /* Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Cell.xib; sourceTree = "<group>"; };
+		76597B712921256C00F1561B /* JSONString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONString.swift; sourceTree = "<group>"; };
+		76597B73292125F400F1561B /* JSONModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONModel.swift; sourceTree = "<group>"; };
 		7A5EC8F70B5283F5D900D307 /* Pods-Networking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Networking.debug.xcconfig"; path = "Target Support Files/Pods-Networking/Pods-Networking.debug.xcconfig"; sourceTree = "<group>"; };
 		D2E421277ADBF5CC5230AA7A /* Pods_Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5C3FDB74D13AE3D4005427A /* Pods-Networking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Networking.release.xcconfig"; path = "Target Support Files/Pods-Networking/Pods-Networking.release.xcconfig"; sourceTree = "<group>"; };
@@ -83,8 +87,10 @@
 				76597B522920E9B800F1561B /* ViewController.swift */,
 				76597B502920E9B800F1561B /* SceneDelegate.swift */,
 				76597B4E2920E9B800F1561B /* AppDelegate.swift */,
-				76597B6A2921039000F1561B /* TableViewCell.swift */,
-				76597B6B2921039000F1561B /* TableViewCell.xib */,
+				76597B6A2921039000F1561B /* Cell.swift */,
+				76597B6B2921039000F1561B /* Cell.xib */,
+				76597B712921256C00F1561B /* JSONString.swift */,
+				76597B73292125F400F1561B /* JSONModel.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -185,7 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				76597B5B2920E9BA00F1561B /* LaunchScreen.storyboard in Resources */,
-				76597B6D2921039000F1561B /* TableViewCell.xib in Resources */,
+				76597B6D2921039000F1561B /* Cell.xib in Resources */,
 				76597B582920E9BA00F1561B /* Assets.xcassets in Resources */,
 				76597B562920E9B800F1561B /* Main.storyboard in Resources */,
 			);
@@ -240,10 +246,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76597B6C2921039000F1561B /* TableViewCell.swift in Sources */,
+				76597B6C2921039000F1561B /* Cell.swift in Sources */,
 				76597B532920E9B800F1561B /* ViewController.swift in Sources */,
 				76597B662921002E00F1561B /* DataModel.swift in Sources */,
 				76597B4F2920E9B800F1561B /* AppDelegate.swift in Sources */,
+				76597B74292125F400F1561B /* JSONModel.swift in Sources */,
+				76597B722921256C00F1561B /* JSONString.swift in Sources */,
 				76597B512920E9B800F1561B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
