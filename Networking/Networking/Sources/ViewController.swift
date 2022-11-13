@@ -83,6 +83,8 @@ class ViewController: UIViewController {
     
     @IBAction func didTapLoadButton(_ sender: Any) {
         jsonTextView.text = ""
+        dataModels = []
+        tableView.reloadData()
         setVisibleWithAnimation(true)
         
         switch segmentedControl.selectedSegmentIndex {
