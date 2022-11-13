@@ -7,7 +7,9 @@
 
 import UIKit
 
-class TableViewCell: UITableViewCell {
+import Kingfisher
+
+class Cell: UITableViewCell {
     
     static let id = "cell"
 
@@ -35,6 +37,10 @@ class TableViewCell: UITableViewCell {
         nameLabel.text = data.name
         ageLabel.text = "(\(data.age))"
         jobLabel.text = data.job
+        
+        guard let url = URL(string: data.avatar) else { return }
+        avatarImageView.kf.indicatorType = .activity
+        avatarImageView.kf.setImage(with: url)
     }
     
     
