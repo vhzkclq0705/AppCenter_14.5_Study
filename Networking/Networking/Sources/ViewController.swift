@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Alamofire
+
 class ViewController: UIViewController {
     
     // MARK: - UI
@@ -47,11 +49,14 @@ class ViewController: UIViewController {
         })
     }
     
-    // completion: @escaping (String?) -> Void ... completion(json)
-    // completion: ((String?) -> Void)? ... completion?(json)
+    // 네트워킹 작업을 하면, Escaping Closure를 사용하여 작업이 끝나고 얻어온 데이터를 반환할 수 있다.
+    // @escaping 키워드를 통해 비동기 작업으로 얻어온 데이터를 메소드 밖에서도 사용할 수 있다.
+    
+    // 사용법
+    // func a(completion: @escaping (String?) -> Void) { completion(json) }
+    // func a(completion: ((String?) -> Void)?) { completion?(json) }
     // 위 두 코드는 같다.
     
-    /// Escaping closure를 이용한 비동기 API 호출
     private func downloadJSONWithNormal(
         _ url: String,
         completion: @escaping (String?) -> Void)
@@ -101,7 +106,23 @@ class ViewController: UIViewController {
         _ url: String,
         completion: @escaping (String?) -> Void)
     {
+        let url = URL(string: url)!
         
+        // Swift에서는 HTTP 통신, 즉 네트워킹을 위한 다양한 라이브러리가 존재한다.
+        // 보통 그 중 하나인 Alamofire를 가장 많이 사용한다.
+        // Alamofire는 URLSession을 조금 더 작업하기 쉽고 간결하게 바꾼 라이브러리이다.
+        
+        AF.request(url)
+//            .validate(statusCode: 200..<500)
+            .responseString { response in
+                switch response.result {
+                case .success(let json):
+                    completion(json)
+                case .failure(let err):
+                    print(err.localizedDescription)
+                    completion(nil)
+                }
+            }
     }
     
     private func fetchTextViews(_ text: String?) {
@@ -119,12 +140,15 @@ class ViewController: UIViewController {
         
         switch segmentedControl.selectedSegmentIndex {
         case 0: downloadJSONWithNormal(listURL) { [weak self] json in
+            print("Data(contentsOF:)로 불러오기!")
             self?.fetchTextViews(json)
         }
         case 1: downloadJSONWithURLSession(listURL) { [weak self] json in
+            print("URLSession으로 불러오기!")
             self?.fetchTextViews(json)
         }
         case 2: downloadJSONWithAlamofire(listURL) { [weak self] json in
+            print("Alamofire로 불러오기!")
             self?.fetchTextViews(json)
         }
         default: break
