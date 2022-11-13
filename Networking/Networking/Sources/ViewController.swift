@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     // MARK: - UI
     
     @IBOutlet weak var timerLabel: UILabel!
-    @IBOutlet weak var loadButton: UIButton!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var jsonTextView: UITextView!
     @IBOutlet weak var structTextView: UITextView!
@@ -52,38 +52,64 @@ class ViewController: UIViewController {
     // 위 두 코드는 같다.
     
     /// Escaping closure를 이용한 비동기 API 호출
-    private func downloadJSONWithEscapingClosure(
+    private func downloadJSONWithNormal(
         _ url: String,
         completion: @escaping (String?) -> Void)
     {
+        // URL 주소가 이미지 파일이나 json이면 (constentsOf: URL)을 통해 데이터를 불러올 수 있다.
+        // (contentsOf: URL) 사용하면 해당 URL에서 데이터를 불러오는 시간이 발생한다.
+        // 따라서, GCD를 사용하지 않고 해당 기능을 사용하면 데이터를 불러오는 시간동안 앱이 멈춘다.
+        // DispatchQueue.global().async를 통해 비동기로 데이터를 불러와야 한다.
+        
         DispatchQueue.global().async {
             let url = URL(string: url)!
             let data = try! Data(contentsOf: url)
             let json = String(data: data, encoding: .utf8)
-            
+
             completion(json)
         }
     }
     
-//    let url = URL(string: url)!
-//    let task = URLSession.shared.dataTask(with: url) { data, _, err in
-//        guard err == nil else {
-//            // 에러가 발생하면 .onError를 통해 에러 전달
-//            emitter.onError(err!)
-//            return
-//        }
-//
-//        // 데이터가 준비가 되면 .onNext를 통해 데이터 전달
-//        if let data = data,
-//           let json = String(data: data, encoding: .utf8) {
-//            emitter.onNext(json)
-//        }
-//
-//        // 데이터가 준비가 되지 않으면 onCompleted를 통해 종료
-//        emitter.onCompleted()
-//    }
-//
-//    task.resume()
+    private func downloadJSONWithURLSession(
+        _ url: String,
+        completion: @escaping (String?) -> Void)
+    {
+        let url = URL(string: url)!
+        
+        // Swift에서는 URLSession을 사용하여 HTTP 통신을 할 수 있다.
+        // 해당 작업은 비동기 스레드에서 진행이된다.
+        // URLSession에서 데이터를 얻어오기(GET) 위해서는 dataTask를 사용한다.
+        
+        URLSession.shared.dataTask(with: url) { data, _, err in
+            guard err == nil else {
+                print(err!.localizedDescription)
+                completion(nil)
+                return
+            }
+            
+            if let data = data,
+               let json = String(data: data, encoding: .utf8) {
+                completion(json)
+            } else {
+                completion(nil)
+            }
+            
+        }.resume()
+    }
+    
+    private func downloadJSONWithAlamofire(
+        _ url: String,
+        completion: @escaping (String?) -> Void)
+    {
+        
+    }
+    
+    private func fetchTextViews(_ text: String?) {
+        DispatchQueue.main.async {
+            self.jsonTextView.text = text
+            self.setVisibleWithAnimation(false)
+        }
+    }
     
     // MARK: - Action
     
@@ -91,15 +117,12 @@ class ViewController: UIViewController {
         jsonTextView.text = ""
         setVisibleWithAnimation(true)
         
-        // Escaping closure
-        downloadJSONWithEscapingClosure(listURL) { [weak self] json in
-            DispatchQueue.main.async {
-                self?.jsonTextView.text = json
-                self?.setVisibleWithAnimation(false)
-            }
-        }
+        
     }
 
+    @IBAction func didSelectMenu(_ sender: Any) {
+        
+    }
     
 }
 
