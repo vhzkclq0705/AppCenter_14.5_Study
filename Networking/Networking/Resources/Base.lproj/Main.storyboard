@@ -29,9 +29,6 @@
                                     <segment title="URLSession"/>
                                     <segment title="Alamofire"/>
                                 </segments>
-                                <connections>
-                                    <action selector="didSelectMenu:" destination="BYZ-38-t0r" eventType="valueChanged" id="eGb-yZ-EdW"/>
-                                </connections>
                             </segmentedControl>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hyi-hu-Qhn">
                                 <rect key="frame" x="20" y="168" width="350" height="40"/>

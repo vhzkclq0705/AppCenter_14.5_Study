@@ -117,11 +117,18 @@ class ViewController: UIViewController {
         jsonTextView.text = ""
         setVisibleWithAnimation(true)
         
-        
-    }
-
-    @IBAction func didSelectMenu(_ sender: Any) {
-        
+        switch segmentedControl.selectedSegmentIndex {
+        case 0: downloadJSONWithNormal(listURL) { [weak self] json in
+            self?.fetchTextViews(json)
+        }
+        case 1: downloadJSONWithURLSession(listURL) { [weak self] json in
+            self?.fetchTextViews(json)
+        }
+        case 2: downloadJSONWithAlamofire(listURL) { [weak self] json in
+            self?.fetchTextViews(json)
+        }
+        default: break
+        }
     }
     
 }
