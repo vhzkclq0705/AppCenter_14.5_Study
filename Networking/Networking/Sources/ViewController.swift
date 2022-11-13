@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var jsonTextView: UITextView!
-    @IBOutlet weak var structTextView: UITextView!
+    @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Property
     
@@ -34,6 +34,9 @@ class ViewController: UIViewController {
     // MARK: - Func
     
     private func configureVC() {
+        tableView.dataSource = self
+        tableView.delegate = self
+        
         Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
             self?.timerLabel.text = "\(Date().timeIntervalSince1970)"
         }
@@ -157,3 +160,25 @@ class ViewController: UIViewController {
     
 }
 
+// MARK: - TableView DataSource & Delegate
+
+extension ViewController: UITableViewDataSource,
+                          UITableViewDelegate {
+    
+    func tableView(
+        _ tableView: UITableView,
+        numberOfRowsInSection section: Int)
+    -> Int
+    {
+        <#code#>
+    }
+    
+    func tableView(
+        _ tableView: UITableView,
+        cellForRowAt indexPath: IndexPath)
+    -> UITableViewCell
+    {
+        <#code#>
+    }
+    
+}
