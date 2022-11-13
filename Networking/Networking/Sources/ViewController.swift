@@ -112,7 +112,7 @@ class ViewController: UIViewController {
     
     private func downloadJSONWithAlamofire(
         _ url: String,
-        completion: @escaping (String?) -> Void)
+        completion: @escaping (String?, [DataModel]?) -> Void)
     {
         let url = URL(string: url)!
         
@@ -122,21 +122,38 @@ class ViewController: UIViewController {
         
         AF.request(url)
 //            .validate(statusCode: 200..<500)
-            .responseString { response in
+//            .responseString { response in
+//                switch response.result {
+//                case .success(let json):
+//                    completion(json, nil)
+//                case .failure(let err):
+//                    print(err.localizedDescription)
+//                    completion(nil, nil)
+//                }
+//            }
+            .responseDecodable(of: [DataModel].self) { response in
                 switch response.result {
-                case .success(let json):
-                    completion(json)
+                case .success(let dataModels):
+                    completion(nil, dataModels)
                 case .failure(let err):
+                    print(response)
                     print(err.localizedDescription)
-                    completion(nil)
+                    completion(nil, nil)
                 }
             }
     }
     
-    private func fetchTextViews(_ text: String?) {
+    private func fetchTextView(_ text: String?) {
         DispatchQueue.main.async {
             self.jsonTextView.text = text
             self.setVisibleWithAnimation(false)
+        }
+    }
+    
+    private func fetchTableView(_ data: [DataModel]?) {
+        DispatchQueue.main.async {
+            self.dataModels = data ?? []
+            self.tableView.reloadData()
         }
     }
     
@@ -149,15 +166,17 @@ class ViewController: UIViewController {
         switch segmentedControl.selectedSegmentIndex {
         case 0: downloadJSONWithNormal(listURL) { [weak self] json in
             print("Data(contentsOF:)로 불러오기!")
-            self?.fetchTextViews(json)
+            self?.fetchTextView(json)
         }
         case 1: downloadJSONWithURLSession(listURL) { [weak self] json in
             print("URLSession으로 불러오기!")
-            self?.fetchTextViews(json)
+            self?.fetchTextView(json)
         }
-        case 2: downloadJSONWithAlamofire(listURL) { [weak self] json in
+        case 2: downloadJSONWithAlamofire(listURL) { [weak self] json, data in
             print("Alamofire로 불러오기!")
-            self?.fetchTextViews(json)
+            self?.fetchTextView(json)
+            self?.fetchTableView(data)
+            
         }
         default: break
         }
@@ -192,6 +211,14 @@ extension ViewController: UITableViewDataSource,
         cell.updateCell(data)
         
         return cell
+    }
+    
+    func tableView(
+        _ tableView: UITableView,
+        heightForRowAt indexPath: IndexPath)
+    -> CGFloat
+    {
+        return UITableView.automaticDimension
     }
     
 }

@@ -7,10 +7,6 @@
 
 import Foundation
 
-struct DataModelArray: Codable {
-    let models: [DataModel]
-}
-
 struct DataModel: Codable {
     let name: String
     let avatar: String
