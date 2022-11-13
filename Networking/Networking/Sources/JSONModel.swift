@@ -18,9 +18,9 @@ class JSONModel {
         DispatchQueue.global().async {
             let url = URL(string: url)!
             let data = try! Data(contentsOf: url)
-            let json = String(data: data, encoding: .utf8)
+            let dataModels = (try? JSONDecoder().decode([DataModel].self, from: data)) ?? []
 
-            completion([])
+            completion(dataModels)
         }
     }
     
@@ -38,9 +38,9 @@ class JSONModel {
             }
             
             if let data = data {
-                
-            } else {
-                completion([])
+                let dataModels = (try? JSONDecoder().decode([DataModel].self, from: data)) ?? []
+
+                completion(dataModels)
             }
             
         }.resume()
