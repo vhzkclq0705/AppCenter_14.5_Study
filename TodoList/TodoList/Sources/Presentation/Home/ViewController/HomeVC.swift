@@ -101,14 +101,15 @@ final class HomeVC: BaseViewController {
         return config
     }
     
+    private func changeViewBackgroundAlpha(_ isDetail: Bool) {
+        view.alpha = isDetail ? 0.3 : 1
+    }
     
     // MARK: - Action
     
-    @objc func didTapWriteButton(_ sender: Any) {
+    @objc private func didTapWriteButton(_ sender: Any) {
         
     }
-
-    
 }
 
 extension HomeVC: UITableViewDelegate,
@@ -136,6 +137,23 @@ extension HomeVC: UITableViewDelegate,
         cell.updateCell(todo)
         
         return cell
+    }
+    
+    func tableView(
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath)
+    {
+        let vc = DetailTodoVC()
+        vc.todo = todos[indexPath.row]
+        vc.modalPresentationStyle = .overFullScreen
+        vc.modalTransitionStyle = .crossDissolve
+        
+        vc.cancelHandler = {
+            self.changeViewBackgroundAlpha(false)
+        }
+        
+        changeViewBackgroundAlpha(true)
+        self.present(vc, animated: true)
     }
     
 }

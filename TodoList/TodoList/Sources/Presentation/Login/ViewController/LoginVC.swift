@@ -96,7 +96,7 @@ final class LoginVC: BaseViewController {
     
     private func makeOKButtonConfig() -> UIButton.Configuration {
         var config = UIButton.Configuration.filled()
-        config.baseBackgroundColor = .darkGray
+        config.baseBackgroundColor = UIColor.setColor(.button)
         config.baseForegroundColor = .white
         config.title = "확 인"
         

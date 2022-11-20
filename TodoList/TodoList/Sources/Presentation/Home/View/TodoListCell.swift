@@ -91,23 +91,8 @@ class TodoListCell: UITableViewCell {
     func updateCell(_ todo: Todo) {
 //        nameLabel.text = todo.name
 //        dateLabel.text = todo.date
-        changeLabelState(todo.isCompleted, todo.contents)
-    }
-    
-    private func changeLabelState(_ isCompleted: Bool, _ contents: String) {
-        let attributedText: NSAttributedString
-        
-        if isCompleted {
-            attributedText = NSAttributedString(
-                string: contents,
-                attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue])
-            contentView.backgroundColor = .darkGray
-        } else {
-            attributedText = NSAttributedString(string: contents)
-            contentView.backgroundColor = .clear
-        }
-        
-        contentsLabel.attributedText = attributedText
+        contentsLabel.attributedText = todo.contents.makeStrikeThrough(todo.isCompleted)
+        contentView.backgroundColor = todo.isCompleted ? .darkGray : .clear
     }
     
 }

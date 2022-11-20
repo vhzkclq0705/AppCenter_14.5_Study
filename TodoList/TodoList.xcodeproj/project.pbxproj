@@ -27,6 +27,9 @@
 		76E7DD45292A643900CF21DC /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E7DD44292A643900CF21DC /* InputView.swift */; };
 		76E7DD47292A686500CF21DC /* UITextField++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E7DD46292A686500CF21DC /* UITextField++.swift */; };
 		76E7DD4B292A773C00CF21DC /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E7DD4A292A773C00CF21DC /* RegisterVC.swift */; };
+		76E7DD54292A807600CF21DC /* DetailTodoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E7DD53292A807600CF21DC /* DetailTodoVC.swift */; };
+		76E7DD56292A914800CF21DC /* String++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E7DD55292A914800CF21DC /* String++.swift */; };
+		76E7DD5D292A93EB00CF21DC /* UIColor++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E7DD5C292A93EB00CF21DC /* UIColor++.swift */; };
 		D520E2958B674C930C8E6FA5 /* Pods_TodoList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E7FA33A45EED0B04294BC1 /* Pods_TodoList.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +57,9 @@
 		76E7DD44292A643900CF21DC /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		76E7DD46292A686500CF21DC /* UITextField++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField++.swift"; sourceTree = "<group>"; };
 		76E7DD4A292A773C00CF21DC /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
+		76E7DD53292A807600CF21DC /* DetailTodoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTodoVC.swift; sourceTree = "<group>"; };
+		76E7DD55292A914800CF21DC /* String++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String++.swift"; sourceTree = "<group>"; };
+		76E7DD5C292A93EB00CF21DC /* UIColor++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor++.swift"; sourceTree = "<group>"; };
 		80DAA40666FA62B48F59E73A /* Pods-TodoList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoList.release.xcconfig"; path = "Target Support Files/Pods-TodoList/Pods-TodoList.release.xcconfig"; sourceTree = "<group>"; };
 		A6532AC127295B55142A5E53 /* Pods-TodoList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoList.debug.xcconfig"; path = "Target Support Files/Pods-TodoList/Pods-TodoList.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -176,9 +182,10 @@
 			isa = PBXGroup;
 			children = (
 				76E7DD4C292A791700CF21DC /* CommonView */,
-				76E7DD48292A771800CF21DC /* Register */,
 				76E7DD3D292A62AB00CF21DC /* Login */,
+				76E7DD48292A771800CF21DC /* Register */,
 				76A2032628FC644F0055727E /* Home */,
+				76E7DD50292A801200CF21DC /* DetailTodo */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -189,6 +196,8 @@
 				76E7DD1B292A229600CF21DC /* UIViewController++.swift */,
 				76E7DD42292A63DF00CF21DC /* UIView++.swift */,
 				76E7DD46292A686500CF21DC /* UITextField++.swift */,
+				76E7DD55292A914800CF21DC /* String++.swift */,
+				76E7DD5C292A93EB00CF21DC /* UIColor++.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -275,6 +284,30 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		76E7DD50292A801200CF21DC /* DetailTodo */ = {
+			isa = PBXGroup;
+			children = (
+				76E7DD52292A806400CF21DC /* ViewController */,
+				76E7DD51292A806000CF21DC /* View */,
+			);
+			path = DetailTodo;
+			sourceTree = "<group>";
+		};
+		76E7DD51292A806000CF21DC /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		76E7DD52292A806400CF21DC /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				76E7DD53292A807600CF21DC /* DetailTodoVC.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		BF0FBB9C2C20DD6E684C3D75 /* Frameworks */ = {
@@ -400,6 +433,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				76A2031428FC5DD00055727E /* HomeVC.swift in Sources */,
+				76E7DD54292A807600CF21DC /* DetailTodoVC.swift in Sources */,
 				76A2032B28FC667B0055727E /* TodoListCell.swift in Sources */,
 				76E7DD3F292A62BB00CF21DC /* LoginVC.swift in Sources */,
 				76E7DD47292A686500CF21DC /* UITextField++.swift in Sources */,
@@ -408,12 +442,14 @@
 				76E7DD1C292A229600CF21DC /* UIViewController++.swift in Sources */,
 				76E7DD3C292A612100CF21DC /* BaseURL.swift in Sources */,
 				76E7DD27292A538D00CF21DC /* Response.swift in Sources */,
+				76E7DD56292A914800CF21DC /* String++.swift in Sources */,
 				76E7DD2A292A544A00CF21DC /* LoginManager.swift in Sources */,
 				76E7DD43292A63DF00CF21DC /* UIView++.swift in Sources */,
 				76A2031028FC5DD00055727E /* AppDelegate.swift in Sources */,
 				76A2031228FC5DD00055727E /* SceneDelegate.swift in Sources */,
 				76E7DD17292A1BF400CF21DC /* BaseVC.swift in Sources */,
 				76E7DD2D292A58E700CF21DC /* Address.swift in Sources */,
+				76E7DD5D292A93EB00CF21DC /* UIColor++.swift in Sources */,
 				76E7DD4B292A773C00CF21DC /* RegisterVC.swift in Sources */,
 				76E7DD2F292A597300CF21DC /* ServiceAPI.swift in Sources */,
 				76E7DD25292A531200CF21DC /* Member.swift in Sources */,

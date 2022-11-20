@@ -47,13 +47,13 @@ class RegisterVC: BaseViewController {
     
     lazy var cancelButton = UIButton().then {
         $0.setTitle("Cancel", for: .normal)
-        $0.setTitleColor(UIColor.systemBlue, for: .normal)
+        $0.setTitleColor(UIColor.setColor(.button), for: .normal)
         $0.addTarget(self, action: #selector(didTapCancelButton), for: .touchUpInside)
     }
     
     lazy var okButton = UIButton().then {
         $0.setTitle("OK", for: .normal)
-        $0.setTitleColor(UIColor.systemBlue, for: .normal)
+        $0.setTitleColor(UIColor.setColor(.button), for: .normal)
         $0.addTarget(self, action: #selector(didTapOKButton), for: .touchUpInside)
     }
 
