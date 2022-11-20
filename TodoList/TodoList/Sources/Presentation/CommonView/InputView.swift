@@ -10,27 +10,25 @@ import SwiftUI
 import Then
 import UIKit
 
-struct LoginInputViewPreview: PreviewProvider {
+struct InputViewPreview: PreviewProvider {
     static var previews: some View {
-        LoginInputView().toPreview()
+        InputView().toPreview()
     }
 }
 
-final class LoginInputView: UIView {
+final class InputView: UIView {
     
     // MARK: - UI
     
     lazy var titleLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 17, weight: .bold)
-        $0.text = "test"
     }
     
     lazy var textField = UITextField().then {
         $0.borderStyle = .none
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.darkGray.cgColor
-        $0.clipsToBounds = true
-        $0.placeholder = "test"
+        $0.clearButtonMode = .whileEditing
         $0.addLeftPadding()
     }
     
@@ -65,6 +63,11 @@ final class LoginInputView: UIView {
             $0.leading.trailing.equalToSuperview().inset(30)
             $0.height.equalTo(40)
         }
+    }
+    
+    func configureView(_ title: String, _ placeholder: String) {
+        titleLabel.text = title
+        textField.placeholder = placeholder
     }
     
 }

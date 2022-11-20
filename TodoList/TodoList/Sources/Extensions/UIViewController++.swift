@@ -26,3 +26,14 @@ extension UIViewController {
     }
 }
 #endif
+
+extension UIViewController {
+    
+    func moveHomeViewController() {
+        let vc = HomeVC()
+        let navigationController = UINavigationController(rootViewController: vc)
+        
+        view.window?.rootViewController = navigationController
+    }
+    
+}

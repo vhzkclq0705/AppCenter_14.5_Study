@@ -25,24 +25,24 @@ final class LoginVC: BaseViewController {
         $0.text = "Login"
     }
     
-    lazy var idInputView = LoginInputView().then {
-        $0.titleLabel.text = "ID"
-        $0.textField.placeholder = "abcd@gmail.com"
+    lazy var idInputView = InputView().then {
+        $0.configureView("ID", "abcd")
     }
     
-    lazy var passwordInputView = LoginInputView().then {
-        $0.titleLabel.text = "Password"
-        $0.textField.placeholder = "12345"
+    lazy var passwordInputView = InputView().then {
+        $0.configureView("Password", "12345")
     }
     
     lazy var okButton = UIButton().then {
         $0.configuration = makeOKButtonConfig()
-        $0.addTarget(self, action: #selector(didTapOKButton(_:)), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(didTapOKButton), for: .touchUpInside)
     }
     
     lazy var registerButton = UIButton().then {
         $0.setTitle("회원가입", for: .normal)
-        $0.addTarget(self, action: #selector(didTapRegisterButton(_:)), for: .touchUpInside)
+        $0.titleLabel?.font = .systemFont(ofSize: 15)
+        $0.tintColor = .lightGray
+        $0.addTarget(self, action: #selector(didTapRegisterButton), for: .touchUpInside)
     }
     
     // MARK: - Property
@@ -59,12 +59,8 @@ final class LoginVC: BaseViewController {
     
     // MARK: - Setup
     
-    override func configureViewController() {
-        
-    }
-    
     override func addViews() {
-        [titleLabel, idInputView, passwordInputView, okButton]
+        [titleLabel, idInputView, passwordInputView, okButton, registerButton]
             .forEach { view.addSubview($0) }
     }
     
@@ -89,6 +85,11 @@ final class LoginVC: BaseViewController {
             $0.leading.trailing.equalToSuperview().inset(30)
             $0.height.equalTo(40)
         }
+        
+        registerButton.snp.makeConstraints {
+            $0.bottom.equalToSuperview().offset(-30)
+            $0.centerX.equalToSuperview()
+        }
     }
     
     // MARK: - Func
@@ -104,12 +105,13 @@ final class LoginVC: BaseViewController {
     
     // MARK: - Action
 
-    @objc private func didTapOKButton(_ sender: Any) {
-        
+    @objc private func didTapOKButton() {
+        moveHomeViewController()
     }
     
-    @objc private func didTapRegisterButton(_ sender: Any) {
-        
+    @objc private func didTapRegisterButton() {
+        let vc = RegisterVC()
+        self.present(vc, animated: true)
     }
     
 }
