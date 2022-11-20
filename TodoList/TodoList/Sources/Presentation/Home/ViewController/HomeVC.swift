@@ -23,17 +23,17 @@ final class HomeVC: BaseViewController {
     // MARK: - UI
     
     lazy var tableView = UITableView().then {
+        $0.register(TodoListCell.self, forCellReuseIdentifier: TodoListCell.id)
         $0.dataSource = self
         $0.delegate = self
-        $0.register(TodoListCell.self, forCellReuseIdentifier: TodoListCell.id)
+        $0.separatorStyle = .none
         $0.backgroundColor = .clear
-        $0.contentInsetAdjustmentBehavior = .never
     }
     
     lazy var writeButton = UIButton().then {
         $0.configuration = configureWriteButton()
         $0.layer.borderWidth = 2
-        $0.layer.borderColor = UIColor.lightGray.cgColor
+        $0.layer.borderColor = UIColor.darkGray.cgColor
         $0.layer.cornerRadius = 20
         $0.clipsToBounds = true
     }
@@ -41,6 +41,22 @@ final class HomeVC: BaseViewController {
     
     // MARK: - Property
     
+    var todos = [
+        Todo(name: "test1", date: "a", contents: "aaaaaaaaaaaaafsdfds\nawefewfewf\nqqwdqwd\nwfewfwaefewf", isCompleted: true),
+        Todo(name: "test2", date: "a", contents: "bbbbbbbbbbb", isCompleted: false),
+        Todo(name: "test3", date: "a", contents: "ccccccccccc", isCompleted: true),
+        Todo(name: "test4", date: "a", contents: "ddddddddd", isCompleted: true),
+        Todo(name: "test5", date: "a", contents: "eeeeeeeeeeeee", isCompleted: false),
+        Todo(name: "test6", date: "a", contents: "ffffffffff", isCompleted: true),
+        Todo(name: "test6", date: "a", contents: "ffffffffff", isCompleted: true),
+        Todo(name: "test6", date: "a", contents: "ffffffffff", isCompleted: false),
+        Todo(name: "test6", date: "a", contents: "ffffffffff", isCompleted: true),
+        Todo(name: "test6", date: "a", contents: "ffffffffff", isCompleted: false),
+        Todo(name: "test6", date: "a", contents: "ffffffffff", isCompleted: true),
+        Todo(name: "test6", date: "a", contents: "ffffffffff", isCompleted: true),
+        Todo(name: "test6", date: "a", contents: "ffffffffff", isCompleted: false),
+        Todo(name: "test6", date: "a", contents: "ffffffffff", isCompleted: true),
+    ]
     
     
     // MARK: - Life cycle
@@ -53,6 +69,7 @@ final class HomeVC: BaseViewController {
     
     override func configureNavigationBar() {
         self.navigationItem.title = "TodoList"
+        self.navigationController?.navigationBar.isTranslucent = false
     }
     
     override func addViews() {
@@ -77,7 +94,7 @@ final class HomeVC: BaseViewController {
     
     private func configureWriteButton() -> UIButton.Configuration {
         var config = UIButton.Configuration.filled()
-        config.baseBackgroundColor = .darkGray
+        config.baseBackgroundColor = #colorLiteral(red: 0.1510773897, green: 0.1510773897, blue: 0.1510773897, alpha: 1)
         config.baseForegroundColor = .white
         config.image = UIImage(systemName: "pencil")?.withTintColor(
             .red,
@@ -106,7 +123,7 @@ extension HomeVC: UITableViewDelegate,
         numberOfRowsInSection section: Int)
     -> Int
     {
-        0
+        return todos.count
     }
     
     func tableView(
@@ -114,7 +131,15 @@ extension HomeVC: UITableViewDelegate,
         cellForRowAt indexPath: IndexPath)
     -> UITableViewCell
     {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: TodoListCell.id, for: indexPath) as? TodoListCell else {
+            return UITableViewCell()
+        }
+        
+        var todo = todos[indexPath.row]
+        cell.updateCell(todo)
+        
+        return cell
     }
     
 }

@@ -10,12 +10,6 @@ import SwiftUI
 import SnapKit
 import Then
 
-struct TodoListCellPreview: PreviewProvider {
-    static var previews: some View {
-        TodoListCell().toPreview()
-    }
-}
-
 class TodoListCell: UITableViewCell {
 
     static let id = "cell"
@@ -28,7 +22,7 @@ class TodoListCell: UITableViewCell {
     
     lazy var contentsLabel = UILabel().then {
         $0.textColor = .lightGray
-        $0.numberOfLines = 3
+        $0.numberOfLines = 2
     }
     
     lazy var dateLabel = UILabel().then {
@@ -36,10 +30,15 @@ class TodoListCell: UITableViewCell {
         $0.textColor = .darkGray
     }
     
+    lazy var bottomBorderView = UIView().then {
+        $0.backgroundColor = .darkGray.withAlphaComponent(0.5)
+    }
+    
     // MARK: - Init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        configureCell()
         addViews()
         configureLayout()
     }
@@ -48,32 +47,40 @@ class TodoListCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        contentsLabel.attributedText = NSAttributedString(string: "")
-    }
-    
     // MARK: - Setup
     
+    private func configureCell() {
+        contentView.backgroundColor = .clear
+        backgroundColor = .clear
+        selectionStyle = .none
+    }
+    
     private func addViews() {
-        [nameLabel, dateLabel, contentsLabel]
+        [nameLabel, dateLabel, contentsLabel, bottomBorderView]
             .forEach { contentView.addSubview($0) }
     }
     
     private func configureLayout() {
         nameLabel.snp.makeConstraints {
-            $0.top.leading.equalToSuperview().inset(15)
+            $0.top.equalToSuperview().offset(15)
+            $0.leading.equalToSuperview().inset(30)
         }
         
         contentsLabel.snp.makeConstraints {
-            $0.top.equalTo(nameLabel.snp.bottom).offset(15)
+            $0.top.equalTo(nameLabel.snp.bottom).offset(10)
             $0.bottom.equalToSuperview().offset(-15)
-            $0.leading.equalTo(nameLabel)
+            $0.leading.trailing.equalToSuperview().inset(30)
         }
         
         dateLabel.snp.makeConstraints {
             $0.top.equalTo(nameLabel)
-            $0.trailing.equalToSuperview().offset(-15)
+            $0.trailing.equalToSuperview().offset(-30)
+        }
+        
+        bottomBorderView.snp.makeConstraints {
+            $0.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(15)
+            $0.height.equalTo(1)
         }
     }
     
@@ -86,11 +93,17 @@ class TodoListCell: UITableViewCell {
     }
     
     private func changeLabelState(_ isCompleted: Bool, _ contents: String) {
-        let attributedText = isCompleted
-        ? NSAttributedString(
-            string: contents,
-            attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue])
-        : NSAttributedString(string: contents)
+        let attributedText: NSAttributedString
+        
+        if isCompleted {
+            attributedText = NSAttributedString(
+                string: contents,
+                attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue])
+            contentView.backgroundColor = .darkGray
+        } else {
+            attributedText = NSAttributedString(string: contents)
+            contentView.backgroundColor = .clear
+        }
         
         contentsLabel.attributedText = attributedText
     }

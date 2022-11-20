@@ -13,10 +13,10 @@ struct Todo: Codable {
     let contents: String
     let isCompleted: Bool
     
-    init(name: String, date: String, contents: String) {
+    init(name: String, date: String, contents: String, isCompleted: Bool) {
         self.name = name
         self.date = date
         self.contents = contents
-        self.isCompleted = false
+        self.isCompleted = isCompleted
     }
 }
