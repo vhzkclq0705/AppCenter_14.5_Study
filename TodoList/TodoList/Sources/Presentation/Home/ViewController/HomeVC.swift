@@ -12,7 +12,7 @@ import UIKit
 
 // MARK: - Preview
 
-struct ViewControllerPreview: PreviewProvider {
+struct HomeVCPreview: PreviewProvider {
     static var previews: some View {
         HomeVC().toPreview()
     }
@@ -31,7 +31,7 @@ final class HomeVC: BaseViewController {
     }
     
     lazy var writeButton = UIButton().then {
-        $0.configuration = configureWriteButton()
+        $0.configuration = makeWriteButtonConfig()
         $0.layer.borderWidth = 2
         $0.layer.borderColor = UIColor.darkGray.cgColor
         $0.layer.cornerRadius = 20
@@ -88,7 +88,7 @@ final class HomeVC: BaseViewController {
     
     // MARK: - Func
     
-    private func configureWriteButton() -> UIButton.Configuration {
+    private func makeWriteButtonConfig() -> UIButton.Configuration {
         var config = UIButton.Configuration.filled()
         config.baseBackgroundColor = #colorLiteral(red: 0.1510773897, green: 0.1510773897, blue: 0.1510773897, alpha: 1)
         config.baseForegroundColor = .white
@@ -132,7 +132,7 @@ extension HomeVC: UITableViewDelegate,
             return UITableViewCell()
         }
         
-        var todo = todos[indexPath.row]
+        let todo = todos[indexPath.row]
         cell.updateCell(todo)
         
         return cell
