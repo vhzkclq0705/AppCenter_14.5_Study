@@ -21,7 +21,7 @@
 		76E7DD2A292A544A00CF21DC /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E7DD29292A544A00CF21DC /* LoginManager.swift */; };
 		76E7DD2D292A58E700CF21DC /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E7DD2C292A58E700CF21DC /* Address.swift */; };
 		76E7DD2F292A597300CF21DC /* ServiceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E7DD2E292A597300CF21DC /* ServiceAPI.swift */; };
-		76E7DD39292A5FCB00CF21DC /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E7DD38292A5FCB00CF21DC /* BaseURL.swift */; };
+		76E7DD3C292A612100CF21DC /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E7DD3B292A612100CF21DC /* BaseURL.swift */; };
 		D520E2958B674C930C8E6FA5 /* Pods_TodoList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E7FA33A45EED0B04294BC1 /* Pods_TodoList.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,7 +43,7 @@
 		76E7DD29292A544A00CF21DC /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		76E7DD2C292A58E700CF21DC /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		76E7DD2E292A597300CF21DC /* ServiceAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAPI.swift; sourceTree = "<group>"; };
-		76E7DD38292A5FCB00CF21DC /* BaseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURL.swift; sourceTree = "<group>"; };
+		76E7DD3B292A612100CF21DC /* BaseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURL.swift; sourceTree = "<group>"; };
 		80DAA40666FA62B48F59E73A /* Pods-TodoList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoList.release.xcconfig"; path = "Target Support Files/Pods-TodoList/Pods-TodoList.release.xcconfig"; sourceTree = "<group>"; };
 		A6532AC127295B55142A5E53 /* Pods-TodoList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoList.debug.xcconfig"; path = "Target Support Files/Pods-TodoList/Pods-TodoList.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -201,7 +201,7 @@
 			children = (
 				76E7DD2C292A58E700CF21DC /* Address.swift */,
 				76E7DD2E292A597300CF21DC /* ServiceAPI.swift */,
-				76E7DD38292A5FCB00CF21DC /* BaseURL.swift */,
+				76E7DD3B292A612100CF21DC /* BaseURL.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -332,7 +332,7 @@
 				76A2032B28FC667B0055727E /* TodoListCell.swift in Sources */,
 				76E7DD23292A450200CF21DC /* Todo.swift in Sources */,
 				76E7DD1C292A229600CF21DC /* UIViewController++.swift in Sources */,
-				76E7DD39292A5FCB00CF21DC /* BaseURL.swift in Sources */,
+				76E7DD3C292A612100CF21DC /* BaseURL.swift in Sources */,
 				76E7DD27292A538D00CF21DC /* Response.swift in Sources */,
 				76E7DD2A292A544A00CF21DC /* LoginManager.swift in Sources */,
 				76A2031028FC5DD00055727E /* AppDelegate.swift in Sources */,
