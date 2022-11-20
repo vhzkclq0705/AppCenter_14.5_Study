@@ -16,19 +16,19 @@ class TodoListCell: UITableViewCell {
     
     // MARK: - UI
 
-    lazy var nameLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 20, weight: .bold)
-    }
+//    lazy var nameLabel = UILabel().then {
+//        $0.font = .systemFont(ofSize: 20, weight: .bold)
+//    }
     
     lazy var contentsLabel = UILabel().then {
         $0.textColor = .lightGray
         $0.numberOfLines = 2
     }
     
-    lazy var dateLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 15)
-        $0.textColor = .darkGray
-    }
+//    lazy var dateLabel = UILabel().then {
+//        $0.font = .systemFont(ofSize: 15)
+//        $0.textColor = .darkGray
+//    }
     
     lazy var bottomBorderView = UIView().then {
         $0.backgroundColor = .darkGray.withAlphaComponent(0.5)
@@ -56,26 +56,28 @@ class TodoListCell: UITableViewCell {
     }
     
     private func addViews() {
-        [nameLabel, dateLabel, contentsLabel, bottomBorderView]
+        [/*nameLabel, dateLabel, */
+            contentsLabel, bottomBorderView]
             .forEach { contentView.addSubview($0) }
     }
     
     private func configureLayout() {
-        nameLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(15)
-            $0.leading.equalToSuperview().inset(30)
-        }
+//        nameLabel.snp.makeConstraints {
+//            $0.top.equalToSuperview().offset(15)
+//            $0.leading.equalToSuperview().inset(30)
+//        }
         
         contentsLabel.snp.makeConstraints {
-            $0.top.equalTo(nameLabel.snp.bottom).offset(10)
+//            $0.top.equalTo(nameLabel.snp.bottom).offset(10)
+            $0.top.equalToSuperview().offset(15)
             $0.bottom.equalToSuperview().offset(-15)
             $0.leading.trailing.equalToSuperview().inset(30)
         }
         
-        dateLabel.snp.makeConstraints {
-            $0.top.equalTo(nameLabel)
-            $0.trailing.equalToSuperview().offset(-30)
-        }
+//        dateLabel.snp.makeConstraints {
+//            $0.top.equalTo(nameLabel)
+//            $0.trailing.equalToSuperview().offset(-30)
+//        }
         
         bottomBorderView.snp.makeConstraints {
             $0.bottom.equalToSuperview()
@@ -87,8 +89,8 @@ class TodoListCell: UITableViewCell {
     // MARK: - Func
     
     func updateCell(_ todo: Todo) {
-        nameLabel.text = todo.name
-        dateLabel.text = todo.date
+//        nameLabel.text = todo.name
+//        dateLabel.text = todo.date
         changeLabelState(todo.isCompleted, todo.contents)
     }
     

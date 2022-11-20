@@ -42,20 +42,16 @@ final class HomeVC: BaseViewController {
     // MARK: - Property
     
     var todos = [
-        Todo(name: "test1", date: "a", contents: "aaaaaaaaaaaaafsdfds\nawefewfewf\nqqwdqwd\nwfewfwaefewf", isCompleted: true),
-        Todo(name: "test2", date: "a", contents: "bbbbbbbbbbb", isCompleted: false),
-        Todo(name: "test3", date: "a", contents: "ccccccccccc", isCompleted: true),
-        Todo(name: "test4", date: "a", contents: "ddddddddd", isCompleted: true),
-        Todo(name: "test5", date: "a", contents: "eeeeeeeeeeeee", isCompleted: false),
-        Todo(name: "test6", date: "a", contents: "ffffffffff", isCompleted: true),
-        Todo(name: "test6", date: "a", contents: "ffffffffff", isCompleted: true),
-        Todo(name: "test6", date: "a", contents: "ffffffffff", isCompleted: false),
-        Todo(name: "test6", date: "a", contents: "ffffffffff", isCompleted: true),
-        Todo(name: "test6", date: "a", contents: "ffffffffff", isCompleted: false),
-        Todo(name: "test6", date: "a", contents: "ffffffffff", isCompleted: true),
-        Todo(name: "test6", date: "a", contents: "ffffffffff", isCompleted: true),
-        Todo(name: "test6", date: "a", contents: "ffffffffff", isCompleted: false),
-        Todo(name: "test6", date: "a", contents: "ffffffffff", isCompleted: true),
+        Todo(contents: "ㅁㅈㄷㄹㄷㅈㄹㅁㄴㅇㄹㅈㄷㄹㅈwfwaefwefwefwefewfewfwefewf", id: 0, isCompleted: true),
+        Todo(contents: "awe\nfwefasd\nfsdfsdfsdf", id: 1, isCompleted: false),
+        Todo(contents: "ㅈㄷㄹㅁㅈㄹㅁㄴㅇㅇㄴㅊㅁㄴㅇ", id: 2, isCompleted: false),
+        Todo(contents: "1413141313513513515", id: 3, isCompleted: true),
+        Todo(contents: "ㅈㄷㄹ3ㅁㄹ2ㄹ2ㅇㅁ23ㅊㅇ2", id: 4, isCompleted: false),
+        Todo(contents: "2ㅅㅍ4ㅍ535ㅇㄴ5345ㅇㄴ34ㅇ", id: 5, isCompleted: true),
+        Todo(contents: "ㄴ36ㄹ3ㄹㄴㅍㄴㅎㄷㄱㅍㄱㄴㄱㄷ", id: 6, isCompleted: false),
+        Todo(contents: "ㄴㅍ745ㅍ745\n25252vsce", id: 7, isCompleted: false),
+        Todo(contents: "secgeg4seg4esrse4rs", id: 8, isCompleted: true),
+        Todo(contents: "ㅁㅈㄷㄹㄷㅈㄹ3t43\nㅁㄴㅇㄹet4setㅈㄷㄹㅈ", id: 9, isCompleted: false),
     ]
     
     

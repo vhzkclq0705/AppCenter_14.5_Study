@@ -94,6 +94,7 @@
 		76A2032328FC5DDE0055727E /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				76E7DD2B292A58C100CF21DC /* Networking */,
 				76E7DD28292A543F00CF21DC /* Manager */,
 				76E7DD21292A44F700CF21DC /* Model */,
 				76E7DD18292A1D2300CF21DC /* Extensions */,
@@ -187,6 +188,13 @@
 				76E7DD29292A544A00CF21DC /* LoginManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		76E7DD2B292A58C100CF21DC /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		BF0FBB9C2C20DD6E684C3D75 /* Frameworks */ = {
