@@ -25,7 +25,7 @@ class BaseViewController: UIViewController {
     }
     
     func configureViewController() {
-        view.backgroundColor = .white
+        view.backgroundColor = #colorLiteral(red: 0.03137254902, green: 0.03137254902, blue: 0.03137254902, alpha: 1)
     }
     
     func configureNavigationBar() {}
