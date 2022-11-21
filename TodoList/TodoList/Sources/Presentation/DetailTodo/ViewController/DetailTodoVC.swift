@@ -45,7 +45,6 @@ class DetailTodoVC: BaseViewController {
         $0.addTarget(self, action: #selector(didTapCancelButton), for: .touchUpInside)
     }
     
-    
     // MARK: - Property
     
     var todo: Todo?

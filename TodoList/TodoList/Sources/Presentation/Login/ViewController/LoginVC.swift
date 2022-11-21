@@ -106,7 +106,13 @@ final class LoginVC: BaseViewController {
     // MARK: - Action
 
     @objc private func didTapOKButton() {
-        moveHomeViewController()
+        let model = LoginPost(
+            id: idInputView.textField.text ?? "",
+            password: passwordInputView.textField.text ?? "")
+        
+        API.login(model) {
+            
+        }
     }
     
     @objc private func didTapRegisterButton() {
