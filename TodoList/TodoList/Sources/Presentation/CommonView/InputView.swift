@@ -28,6 +28,7 @@ final class InputView: UIView {
         $0.borderStyle = .none
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.darkGray.cgColor
+        $0.autocapitalizationType = .none
         $0.clearButtonMode = .whileEditing
         $0.addLeftPadding()
     }

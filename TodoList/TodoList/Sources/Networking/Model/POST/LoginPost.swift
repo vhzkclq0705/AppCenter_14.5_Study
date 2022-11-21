@@ -8,11 +8,11 @@
 import Foundation
 
 struct LoginPost: Encodable {
-    let id: String
+    let memberId: String
     let password: String
     
     init(id: String, password: String) {
-        self.id = id
+        self.memberId = id
         self.password = password
     }
 }

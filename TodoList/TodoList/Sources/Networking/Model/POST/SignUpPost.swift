@@ -15,7 +15,7 @@ struct SignUpPost: Encodable {
     let password: String
     let role: String
     
-    // user
+    // ADMIN
     init(
         age: Int,
         email: String,
@@ -28,24 +28,7 @@ struct SignUpPost: Encodable {
         self.memberId = memberId
         self.name = name
         self.password = password
-        self.role = "user"
-    }
-    
-    // admin
-    init(
-        age: Int,
-        email: String,
-        memberId: String,
-        name: String,
-        password: String,
-        role: String)
-    {
-        self.age = age
-        self.email = email
-        self.memberId = memberId
-        self.name = name
-        self.password = password
-        self.role = role
+        self.role = "ADMIN"
     }
     
 }

@@ -110,8 +110,10 @@ final class LoginVC: BaseViewController {
             id: idInputView.textField.text ?? "",
             password: passwordInputView.textField.text ?? "")
         
-        API.login(model) {
-            
+        API.login(model) { [weak self] result in
+            if result {
+                self?.moveHomeViewController()
+            }
         }
     }
     

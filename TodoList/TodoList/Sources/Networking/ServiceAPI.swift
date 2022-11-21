@@ -20,7 +20,7 @@ fileprivate func networking<T: Decodable>(
     }
     
     let headers: HTTPHeaders = [
-        "X-ACCESS-TOKEN": LoginManager.shared.token,
+        "X-AUTH-TOKEN": LoginManager.shared.token,
         "Content-Type": "application/json"
     ]
     
@@ -69,6 +69,7 @@ final class API {
             if let model = model {
                 print("Login succeessed!")
                 LoginManager.shared.token = model.token
+                print("Token: \(model.token)")
                 completion(true)
             } else {
                 print("Login failed!")

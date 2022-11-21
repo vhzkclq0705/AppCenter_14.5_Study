@@ -97,7 +97,7 @@ class DetailTodoVC: BaseViewController {
     // MARK: - Func
     
     private func makeStrikeThrough(_ bool: Bool) {
-        contentsLabel.attributedText = todo?.contents.makeStrikeThrough(bool)
+        contentsLabel.attributedText = todo?.content.makeStrikeThrough(bool)
     }
     
     

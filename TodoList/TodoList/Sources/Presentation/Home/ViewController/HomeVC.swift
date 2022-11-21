@@ -28,6 +28,11 @@ final class HomeVC: BaseViewController {
         $0.delegate = self
         $0.separatorStyle = .none
         $0.backgroundColor = .clear
+        $0.refreshControl = UIRefreshControl()
+        $0.refreshControl?.addTarget(
+            self,
+            action: #selector(refreshTableView),
+            for: .valueChanged)
     }
     
     lazy var writeButton = UIButton().then {
@@ -38,27 +43,20 @@ final class HomeVC: BaseViewController {
         $0.clipsToBounds = true
     }
     
-    
     // MARK: - Property
     
-    var todos = [
-        Todo(contents: "ㅁㅈㄷㄹㄷㅈㄹㅁㄴㅇㄹㅈㄷㄹㅈwfwaefwefwefwefewfewfwefewf", id: 0, isCompleted: true),
-        Todo(contents: "awe\nfwefasd\nfsdfsdfsdf", id: 1, isCompleted: false),
-        Todo(contents: "ㅈㄷㄹㅁㅈㄹㅁㄴㅇㅇㄴㅊㅁㄴㅇ", id: 2, isCompleted: false),
-        Todo(contents: "1413141313513513515", id: 3, isCompleted: true),
-        Todo(contents: "ㅈㄷㄹ3ㅁㄹ2ㄹ2ㅇㅁ23ㅊㅇ2", id: 4, isCompleted: false),
-        Todo(contents: "2ㅅㅍ4ㅍ535ㅇㄴ5345ㅇㄴ34ㅇ", id: 5, isCompleted: true),
-        Todo(contents: "ㄴ36ㄹ3ㄹㄴㅍㄴㅎㄷㄱㅍㄱㄴㄱㄷ", id: 6, isCompleted: false),
-        Todo(contents: "ㄴㅍ745ㅍ745\n25252vsce", id: 7, isCompleted: false),
-        Todo(contents: "secgeg4seg4esrse4rs", id: 8, isCompleted: true),
-        Todo(contents: "ㅁㅈㄷㄹㄷㅈㄹ3t43\nㅁㄴㅇㄹet4setㅈㄷㄹㅈ", id: 9, isCompleted: false),
-    ]
-    
+    var todos: [Todo] = [] {
+        didSet {
+            tableView.reloadData()
+            tableView.refreshControl?.endRefreshing()
+        }
+    }
     
     // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchTodos()
     }
     
     // MARK: - Setup
@@ -88,6 +86,12 @@ final class HomeVC: BaseViewController {
     
     // MARK: - Func
     
+    private func fetchTodos() {
+        API.fetchAllTodos() { [weak self] todos in
+            self?.todos = todos
+        }
+    }
+    
     private func makeWriteButtonConfig() -> UIButton.Configuration {
         var config = UIButton.Configuration.filled()
         config.baseBackgroundColor = #colorLiteral(red: 0.1510773897, green: 0.1510773897, blue: 0.1510773897, alpha: 1)
@@ -107,7 +111,11 @@ final class HomeVC: BaseViewController {
     
     // MARK: - Action
     
-    @objc private func didTapWriteButton(_ sender: Any) {
+    @objc private func refreshTableView() {
+        fetchTodos()
+    }
+    
+    @objc private func didTapWriteButton() {
         
     }
 }

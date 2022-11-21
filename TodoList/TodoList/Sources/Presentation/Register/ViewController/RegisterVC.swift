@@ -144,7 +144,18 @@ class RegisterVC: BaseViewController {
     // MARK: - Action
 
     @objc private func didTapOKButton() {
+        let model = SignUpPost(
+            age: Int(ageInputView.textField.text ?? "20") ?? 20,
+            email: emailInputView.textField.text ?? "",
+            memberId: idInputView.textField.text ?? "",
+            name: nameInputView.textField.text ?? "",
+            password: passwordInputView.textField.text ?? "")
         
+        API.signUp(model) { [weak self] result in
+            if result {
+                self?.dismiss(animated: true)
+            }
+        }
     }
     
     @objc private func didTapCancelButton() {

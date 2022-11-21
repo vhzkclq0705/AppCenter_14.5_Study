@@ -91,7 +91,7 @@ class TodoListCell: UITableViewCell {
     func updateCell(_ todo: Todo) {
 //        nameLabel.text = todo.name
 //        dateLabel.text = todo.date
-        contentsLabel.attributedText = todo.contents.makeStrikeThrough(todo.isCompleted)
+        contentsLabel.attributedText = todo.content.makeStrikeThrough(todo.isCompleted)
         contentView.backgroundColor = todo.isCompleted ? .darkGray : .clear
     }
     
