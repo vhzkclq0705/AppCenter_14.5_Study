@@ -42,6 +42,12 @@ class DetailTodoVC: BaseViewController {
         $0.addTarget(self, action: #selector(didChangeSwitchState(_:)), for: .touchUpInside)
     }
     
+    lazy var deleteButton = UIButton().then {
+        $0.setImage(UIImage(systemName: "trash.fill"), for: .normal)
+        $0.tintColor = .red
+        $0.addTarget(self, action: #selector(didTapDeleteButton), for: .touchUpInside)
+    }
+    
     lazy var cancelButton = UIButton().then {
         $0.setImage(UIImage(systemName: "xmark"), for: .normal)
         $0.tintColor = UIColor.setColor(.button)
@@ -84,7 +90,7 @@ class DetailTodoVC: BaseViewController {
     override func addViews() {
         backgroundView.addGestureRecognizer(backgroundTapRecognizer)
         
-        [contentsTextView, completeSwitch, cancelButton]
+        [contentsTextView, completeSwitch, deleteButton, cancelButton]
             .forEach { contentView.addSubview($0) }
         
         [backgroundView, contentView]
@@ -112,6 +118,11 @@ class DetailTodoVC: BaseViewController {
             $0.top.leading.equalToSuperview().inset(20)
         }
         
+        deleteButton.snp.makeConstraints {
+            $0.top.bottom.width.equalTo(cancelButton)
+            $0.trailing.equalTo(cancelButton.snp.leading).offset(-20)
+        }
+        
         cancelButton.snp.makeConstraints {
             $0.top.trailing.equalToSuperview().inset(25)
         }
@@ -132,15 +143,20 @@ class DetailTodoVC: BaseViewController {
         let update = UpdateTodo(completed: isCompleted)
         
         API.updateTodo(id, update) { [weak self] response in
-            if response {
-                self?.completeSwitch.isOn = isCompleted
-                self?.makeStrikeThrough(isCompleted)
-            } else {
+            if !response {
                 self?.completeSwitch.isOn = !isCompleted
                 self?.makeStrikeThrough(!isCompleted)
             }
-            print(response)
+            
             self?.isUpdating = false
+        }
+    }
+    
+    private func deleteTodo() {
+        API.deleteTodo(id) { [weak self] response in
+            if response {
+                self?.dismissViewController()
+            }
         }
     }
     
@@ -159,18 +175,25 @@ class DetailTodoVC: BaseViewController {
         contentsTextView.attributedText = todo?.content.makeStrikeThrough(bool)
     }
     
+    private func dismissViewController() {
+        cancelHandler?()
+        self.dismiss(animated: true)
+    }
     
     // MARK: - Action
 
     @objc private func didTapCancelButton() {
-        cancelHandler?()
-        self.dismiss(animated: true)
+        dismissViewController()
     }
     
     @objc private func didChangeSwitchState(_ sender: UISwitch) {
         if !isUpdating {
             updateTodo(sender.isOn)
+            makeStrikeThrough(sender.isOn)
         }
     }
     
+    @objc private func didTapDeleteButton() {
+        deleteTodo()
+    }
 }

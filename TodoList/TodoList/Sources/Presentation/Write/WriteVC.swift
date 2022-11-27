@@ -55,7 +55,7 @@ class WriteTodoVC: BaseViewController {
     }
     
     lazy var backgroundTapRecognizer = UITapGestureRecognizer().then {
-        $0.addTarget(self, action: #selector(didTapCancelButton))
+        $0.addTarget(self, action: #selector(didTapBackgroundView))
     }
     
     // MARK: - Property
@@ -72,6 +72,7 @@ class WriteTodoVC: BaseViewController {
     
     override func configureViewController() {
         view.backgroundColor = .clear
+        contentsTextView.becomeFirstResponder()
     }
     
     override func addViews() {
@@ -130,12 +131,25 @@ class WriteTodoVC: BaseViewController {
         }
     }
     
+    private func dismissViewController() {
+        cancelHandler?()
+        self.dismiss(animated: true)
+    }
     
     // MARK: - Action
 
     @objc private func didTapCancelButton() {
-        cancelHandler?()
-        self.dismiss(animated: true)
+        dismissViewController()
+    }
+    
+    @objc private func didTapBackgroundView() {
+        if contentsTextView.isFirstResponder {
+            print("a")
+            view.endEditing(true)
+        } else {
+            print("b")
+            dismissViewController()
+        }
     }
 
     @objc private func didChangeSwitchState(_ sender: UISwitch) {

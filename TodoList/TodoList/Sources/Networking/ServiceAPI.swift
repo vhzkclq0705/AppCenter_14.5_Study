@@ -138,8 +138,7 @@ final class API {
             method: .patch,
             parameter: update,
             model: Response.self) { response in
-                if let response = response,
-                   response.success {
+                if response != nil {
                     print("Update succeessed!")
                     completion(true)
                 } else {
@@ -158,8 +157,7 @@ final class API {
             method: .delete,
             parameter: NonePost(),
             model: Response.self) { response in
-                if let response = response,
-                   response.success {
+                if response != nil {
                     print("Delete succeessed!")
                     completion(true)
                 } else {
@@ -285,20 +283,52 @@ final class API {
         _ id: Int,
         completion: @escaping (Bool) -> Void)
     {
-        networking(
-            address: Address.deleteTodo.url + "\(id)",
-            method: .get,
-            parameter: NonePost(),
-            model: Response.self) { response in
-                if let response = response,
-                   response.success {
+//        networking(
+//            address: Address.deleteTodo.url + "\(id)",
+//            method: .delete,
+//            parameter: NonePost(),
+//            model: Response.self) { response in
+//                if response != nil {
+//                    print("Delete successed!")
+//                    completion(true)
+//                } else {
+//                    print("Delete failed!")
+//                    completion(false)
+//                }
+//            }
+        
+        // 임시
+        let headers: HTTPHeaders = [
+            "X-AUTH-TOKEN": LoginManager.shared.token,
+            "Content-Type": "application/json"
+        ]
+        
+        AF.request(
+            URL(string: baseURL + Address.deleteTodo.url + "\(id)")!,
+            method: .delete,
+            headers: headers)
+        .validate(statusCode: 200...500)
+        .responseData { response in
+            switch response.result {
+            case .success(_):
+                if response.response?.statusCode == 200 {
                     print("Delete successed!")
                     completion(true)
                 } else {
                     print("Delete failed!")
                     completion(false)
                 }
+            case .failure(let err):
+                if err.localizedDescription == "Response could not be serialized, input data was nil or zero length." {
+                    print("Delete successed!")
+                    completion(true)
+                } else {
+                    print(err.localizedDescription)
+                    print("Delete failed!")
+                    completion(false)
+                }
             }
+        }
     }
     
 }
