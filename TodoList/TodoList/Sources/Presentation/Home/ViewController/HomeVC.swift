@@ -41,6 +41,7 @@ final class HomeVC: BaseViewController {
         $0.layer.borderColor = UIColor.darkGray.cgColor
         $0.layer.cornerRadius = 20
         $0.clipsToBounds = true
+        $0.addTarget(self, action: #selector(didTapWriteButton), for: .touchUpInside)
     }
     
     // MARK: - Property
@@ -116,7 +117,17 @@ final class HomeVC: BaseViewController {
     }
     
     @objc private func didTapWriteButton() {
+        let vc = WriteTodoVC()
+        vc.modalPresentationStyle = .overFullScreen
+        vc.modalTransitionStyle = .crossDissolve
         
+        vc.cancelHandler = {
+            self.changeViewBackgroundAlpha(false)
+            self.fetchTodos()
+        }
+        
+        changeViewBackgroundAlpha(true)
+        self.present(vc, animated: true)
     }
 }
 
@@ -158,6 +169,7 @@ extension HomeVC: UITableViewDelegate,
         
         vc.cancelHandler = {
             self.changeViewBackgroundAlpha(false)
+            self.fetchTodos()
         }
         
         changeViewBackgroundAlpha(true)

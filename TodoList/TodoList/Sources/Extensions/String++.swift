@@ -9,12 +9,21 @@ import UIKit
 
 extension String {
     
-    func makeStrikeThrough(_ isCompleted: Bool) -> NSAttributedString {
+    func makeStrikeThrough(_ isCompleted: Bool) -> NSMutableAttributedString {
         return isCompleted
-        ? NSAttributedString(
+        ? NSMutableAttributedString(
             string: self,
-            attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue])
-        : NSAttributedString(string: self)
+            attributes: [
+                .strikethroughStyle: NSUnderlineStyle.single.rawValue,
+                .font: UIFont.systemFont(ofSize: 20, weight: .semibold),
+                .foregroundColor: UIColor.lightGray
+            ])
+        : NSMutableAttributedString(
+            string: self,
+            attributes: [
+                .font: UIFont.systemFont(ofSize: 20, weight: .semibold),
+                .foregroundColor: UIColor.lightGray
+            ])
     }
     
 }

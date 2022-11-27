@@ -34,7 +34,7 @@ final class LoginVC: BaseViewController {
     }
     
     lazy var okButton = UIButton().then {
-        $0.configuration = makeOKButtonConfig()
+        $0.applyCustomConfig("확 인")
         $0.addTarget(self, action: #selector(didTapOKButton), for: .touchUpInside)
     }
     
@@ -90,17 +90,6 @@ final class LoginVC: BaseViewController {
             $0.bottom.equalToSuperview().offset(-30)
             $0.centerX.equalToSuperview()
         }
-    }
-    
-    // MARK: - Func
-    
-    private func makeOKButtonConfig() -> UIButton.Configuration {
-        var config = UIButton.Configuration.filled()
-        config.baseBackgroundColor = UIColor.setColor(.button)
-        config.baseForegroundColor = .white
-        config.title = "확 인"
-        
-        return config
     }
     
     // MARK: - Action

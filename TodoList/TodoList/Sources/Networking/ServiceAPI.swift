@@ -138,7 +138,8 @@ final class API {
             method: .patch,
             parameter: update,
             model: Response.self) { response in
-                if response != nil {
+                if let response = response,
+                   response.success {
                     print("Update succeessed!")
                     completion(true)
                 } else {
@@ -157,7 +158,8 @@ final class API {
             method: .delete,
             parameter: NonePost(),
             model: Response.self) { response in
-                if response != nil {
+                if let response = response,
+                   response.success {
                     print("Delete succeessed!")
                     completion(true)
                 } else {
@@ -204,6 +206,25 @@ final class API {
             }
     }
     
+    static func createTodo(
+        _ create: CreatTodo,
+        completion: @escaping (Bool) -> Void)
+    {
+        networking(
+            address: Address.createTodo.url,
+            method: .post,
+            parameter: create,
+            model: Int.self) { response in
+                if response != nil {
+                    print("Create successed!")
+                    completion(true)
+                } else {
+                    print("Create failed!")
+                    completion(false)
+                }
+            }
+    }
+    
     static func updateTodo(
         _ id: Int,
         _ update: UpdateTodo,
@@ -214,7 +235,8 @@ final class API {
             method: .patch,
             parameter: update,
             model: Response.self) { response in
-                if response != nil {
+                if let response = response,
+                   response.success {
                     print("Update successed!")
                     completion(true)
                 } else {
@@ -233,7 +255,8 @@ final class API {
             method: .get,
             parameter: NonePost(),
             model: Response.self) { response in
-                if response != nil {
+                if let response = response,
+                   response.success {
                     print("Delete successed!")
                     completion(true)
                 } else {

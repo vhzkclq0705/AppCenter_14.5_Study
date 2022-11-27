@@ -27,20 +27,19 @@ class DetailTodoVC: BaseViewController {
     }
     
     lazy var contentView = UIView().then {
-        $0.backgroundColor = .clear
+        $0.backgroundColor = .setColor(.background)
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.darkGray.cgColor
     }
     
-    lazy var contentsLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 20, weight: .semibold)
-        $0.textColor = .lightGray
-        $0.numberOfLines = 15
+    lazy var contentsTextView = UITextView().then {
+        $0.backgroundColor = .clear
+        $0.isEditable = false
     }
     
     lazy var completeSwitch = UISwitch().then {
         $0.onTintColor = UIColor.setColor(.button)
-        $0.addTarget(self, action: #selector(didChangeSwitchState(_:)), for: .valueChanged)
+        $0.addTarget(self, action: #selector(didChangeSwitchState(_:)), for: .touchUpInside)
     }
     
     lazy var cancelButton = UIButton().then {
@@ -61,6 +60,12 @@ class DetailTodoVC: BaseViewController {
             updateUI()
         }
     }
+    var isUpdating = false {
+        didSet {
+            [completeSwitch, cancelButton, backgroundView]
+                .forEach { $0.isUserInteractionEnabled = !isUpdating }
+        }
+    }
     var cancelHandler: (() -> Void)?
     
     // MARK: - Life cycle
@@ -79,7 +84,7 @@ class DetailTodoVC: BaseViewController {
     override func addViews() {
         backgroundView.addGestureRecognizer(backgroundTapRecognizer)
         
-        [contentsLabel, completeSwitch, cancelButton]
+        [contentsTextView, completeSwitch, cancelButton]
             .forEach { contentView.addSubview($0) }
         
         [backgroundView, contentView]
@@ -93,12 +98,13 @@ class DetailTodoVC: BaseViewController {
         
         contentView.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.top.equalToSuperview().offset(200)
             $0.leading.trailing.equalToSuperview().inset(50)
+            $0.height.equalToSuperview().multipliedBy(0.5)
         }
         
-        contentsLabel.snp.makeConstraints {
+        contentsTextView.snp.makeConstraints {
             $0.top.equalTo(completeSwitch.snp.bottom).offset(20)
+            $0.bottom.equalToSuperview().offset(-20)
             $0.leading.trailing.equalToSuperview().inset(20)
         }
         
@@ -121,6 +127,23 @@ class DetailTodoVC: BaseViewController {
         }
     }
     
+    private func updateTodo(_ isCompleted: Bool) {
+        isUpdating = true
+        let update = UpdateTodo(completed: isCompleted)
+        
+        API.updateTodo(id, update) { [weak self] response in
+            if response {
+                self?.completeSwitch.isOn = isCompleted
+                self?.makeStrikeThrough(isCompleted)
+            } else {
+                self?.completeSwitch.isOn = !isCompleted
+                self?.makeStrikeThrough(!isCompleted)
+            }
+            print(response)
+            self?.isUpdating = false
+        }
+    }
+    
     private func updateUI() {
         DispatchQueue.main.async {
             guard let isCompleted = self.todo?.isCompleted else {
@@ -133,7 +156,7 @@ class DetailTodoVC: BaseViewController {
     }
     
     private func makeStrikeThrough(_ bool: Bool) {
-        contentsLabel.attributedText = todo?.content.makeStrikeThrough(bool)
+        contentsTextView.attributedText = todo?.content.makeStrikeThrough(bool)
     }
     
     
@@ -145,12 +168,8 @@ class DetailTodoVC: BaseViewController {
     }
     
     @objc private func didChangeSwitchState(_ sender: UISwitch) {
-        makeStrikeThrough(sender.isOn)
-        
-        if sender.isOn {
-            // POST - isCompleted = true
-        } else {
-            // POST - isCompleted = false
+        if !isUpdating {
+            updateTodo(sender.isOn)
         }
     }
     
