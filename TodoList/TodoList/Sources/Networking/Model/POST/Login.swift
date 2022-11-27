@@ -1,5 +1,5 @@
 //
-//  LoginPost.swift
+//  Login.swift
 //  TodoList
 //
 //  Created by 권오준 on 2022/11/21.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct LoginPost: Codable {
+struct Login: Codable {
     let memberId: String
     let password: String
     

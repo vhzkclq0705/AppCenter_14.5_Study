@@ -8,31 +8,31 @@
 import Alamofire
 import Foundation
 
-// T1: Request, T2: Response
-fileprivate func networking<T1: Codable, T2: Codable>(
-    address: Address,
-    parameter: T1,
-    model: T2.Type,
-    completion: @escaping (T2?) -> Void)
+fileprivate func networking<Parameter: Codable, Model: Codable>(
+    address: String,
+    method: HTTPMethod,
+    parameter: Parameter,
+    model: Model.Type,
+    completion: @escaping (Model?) -> Void)
 {
-    guard let url = URL(string: baseURL + address.url) else {
+    guard let url = URL(string: baseURL + address) else {
         print("URL Error")
         return
     }
-    
     let headers: HTTPHeaders = [
         "X-AUTH-TOKEN": LoginManager.shared.token,
         "Content-Type": "application/json"
     ]
+    let parameter = method == .get || method == .delete ? nil : parameter
     
     AF.request(
         url,
-        method: address.method,
-        parameters: address.method == .get ? nil : parameter,
+        method: method,
+        parameters: parameter,
         encoder: JSONParameterEncoder.default,
         headers: headers)
     .validate(statusCode: 200...500)
-    .responseDecodable(of: T2.self) { response in
+    .responseDecodable(of: Model.self) { response in
         switch response.result {
         case .success(let model):
             if response.response?.statusCode == 200 {
@@ -51,12 +51,17 @@ final class API {
     
     // MARK: - Member
     
-    static func signUp(_ parameter: SignUpPost, completion: @escaping (Bool) -> Void) {
+    static func signUp(
+        _ parameter: SignUp,
+        completion: @escaping (Bool) -> Void)
+    {
         networking(
-            address: .signUp,
+            address: Address.signUp.url,
+            method: .post,
             parameter: parameter,
-            model: DefaultResponse.self) { model in
-                if model != nil {
+            model: Response.self) { response in
+                if let response = response,
+                   response.success {
                     print("SignUp succeessed!")
                     completion(true)
                 } else {
@@ -66,18 +71,97 @@ final class API {
             }
     }
     
-    static func login(_ parameter: LoginPost, completion: @escaping (Bool) -> Void) {
+    static func login(
+        _ parameter: Login,
+        completion: @escaping (Bool) -> Void)
+    {
         networking(
-            address: .login,
+            address: Address.login.url,
+            method: .post,
             parameter: parameter,
-            model: LoginResponse.self) { model in
-                if let model = model {
+            model: Response.self) { response in
+                if let response = response,
+                   response.success {
                     print("Login succeessed!")
-                    LoginManager.shared.token = model.token
-                    print("Token: \(model.token)")
+                    LoginManager.shared.token = response.token
+                    print("Token: \(response.token)")
                     completion(true)
                 } else {
                     print("Login failed!")
+                    completion(false)
+                }
+            }
+    }
+    
+    static func fetchAllMember(completion: @escaping ([Member]) -> Void) {
+        networking(
+            address: Address.allMember.url,
+            method: .get,
+            parameter: NonePost(),
+            model: [Member].self) { members in
+                if let members = members {
+                    print("Fetch succeessed!")
+                    completion(members)
+                } else {
+                    print("Fetch failed!")
+                    completion([])
+                }
+            }
+    }
+    
+    static func fetchOneMember(
+        _ id: Int,
+        completion: @escaping ([Member]) -> Void)
+    {
+        networking(
+            address: Address.member.url + "\(id)",
+            method: .get,
+            parameter: NonePost(),
+            model: [Member].self) { members in
+                if let members = members {
+                    print("Fetch succeessed!")
+                    completion(members)
+                } else {
+                    print("Fetch failed!")
+                    completion([])
+                }
+            }
+    }
+    
+    static func updateMember(
+        _ id: Int,
+        _ update: UpdateMember,
+        completion: @escaping (Bool) -> Void)
+    {
+        networking(
+            address: Address.updateMember.url + "\(id)",
+            method: .patch,
+            parameter: update,
+            model: Response.self) { response in
+                if response != nil {
+                    print("Update succeessed!")
+                    completion(true)
+                } else {
+                    print("Update failed!")
+                    completion(false)
+                }
+            }
+    }
+    
+    static func deleteMember(
+        _ id: Int,
+        completion: @escaping (Bool) -> Void)
+    {
+        networking(
+            address: Address.deleteMember.url + "\(id)",
+            method: .delete,
+            parameter: NonePost(),
+            model: Response.self) { response in
+                if response != nil {
+                    print("Delete succeessed!")
+                    completion(true)
+                } else {
+                    print("Delete failed!")
                     completion(false)
                 }
             }
@@ -87,16 +171,76 @@ final class API {
     
     static func fetchAllTodos(completion: @escaping ([Todo]) -> Void) {
         networking(
-            address: .allTodos,
+            address: Address.allTodos.url,
+            method: .get,
             parameter: NonePost(),
-            model: [Todo].self) { model in
-                if let model = model {
+            model: [Todo].self) { todos in
+                if let todos = todos {
                     print("Fetch successed!")
-                    completion(model)
+                    completion(todos)
                 } else {
                     print("Fetch failed!")
                     completion([])
                 }
             }
     }
+    
+    static func fetchOneTodo(
+        _ id: Int,
+        completion: @escaping (Todo?) -> Void)
+    {
+        networking(
+            address: Address.todo.url + "\(id)",
+            method: .get,
+            parameter: NonePost(),
+            model: Todo.self) { todo in
+                if let todo = todo {
+                    print("Fetch successed!")
+                    completion(todo)
+                } else {
+                    print("Fetch failed!")
+                    completion(nil)
+                }
+            }
+    }
+    
+    static func updateTodo(
+        _ id: Int,
+        _ update: UpdateTodo,
+        completion: @escaping (Bool) -> Void)
+    {
+        networking(
+            address: Address.updateTodo.url + "\(id)",
+            method: .patch,
+            parameter: update,
+            model: Response.self) { response in
+                if response != nil {
+                    print("Update successed!")
+                    completion(true)
+                } else {
+                    print("Update failed!")
+                    completion(false)
+                }
+            }
+    }
+    
+    static func deleteTodo(
+        _ id: Int,
+        completion: @escaping (Bool) -> Void)
+    {
+        networking(
+            address: Address.deleteTodo.url + "\(id)",
+            method: .get,
+            parameter: NonePost(),
+            model: Response.self) { response in
+                if response != nil {
+                    print("Delete successed!")
+                    completion(true)
+                } else {
+                    print("Delete failed!")
+                    completion(false)
+                }
+            }
+    }
+    
 }

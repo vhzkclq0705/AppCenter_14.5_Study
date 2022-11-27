@@ -1,5 +1,5 @@
 //
-//  SignUpPost.swift
+//  SignUp.swift
 //  TodoList
 //
 //  Created by 권오준 on 2022/11/21.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SignUpPost: Codable {
+struct SignUp: Codable {
     let age: Int
     let email: String
     let memberId: String
