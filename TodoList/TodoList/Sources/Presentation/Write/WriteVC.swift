@@ -54,18 +54,19 @@ class WriteTodoVC: BaseViewController {
         $0.addTarget(self, action: #selector(didTapSubmitButton), for: .touchUpInside)
     }
     
-    lazy var backgroundTapRecognizer = UITapGestureRecognizer().then {
-        $0.addTarget(self, action: #selector(didTapBackgroundView))
-    }
-    
     // MARK: - Property
     
+    var isKeyboardShowing = false
     var cancelHandler: (() -> Void)?
     
     // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
     }
     
     // MARK: - Setup
@@ -76,8 +77,6 @@ class WriteTodoVC: BaseViewController {
     }
     
     override func addViews() {
-        backgroundView.addGestureRecognizer(backgroundTapRecognizer)
-        
         [contentsTextView, completeSwitch, cancelButton, submitButton]
             .forEach { contentView.addSubview($0) }
         
@@ -141,16 +140,6 @@ class WriteTodoVC: BaseViewController {
     @objc private func didTapCancelButton() {
         dismissViewController()
     }
-    
-    @objc private func didTapBackgroundView() {
-        if contentsTextView.isFirstResponder {
-            print("a")
-            view.endEditing(true)
-        } else {
-            print("b")
-            dismissViewController()
-        }
-    }
 
     @objc private func didChangeSwitchState(_ sender: UISwitch) {
         guard let text = contentsTextView.text else {
@@ -163,5 +152,5 @@ class WriteTodoVC: BaseViewController {
     @objc private func didTapSubmitButton() {
         createTodo()
     }
-    
+
 }

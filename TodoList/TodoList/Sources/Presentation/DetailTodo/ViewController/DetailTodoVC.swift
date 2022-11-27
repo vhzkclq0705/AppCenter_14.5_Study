@@ -54,10 +54,6 @@ class DetailTodoVC: BaseViewController {
         $0.addTarget(self, action: #selector(didTapCancelButton), for: .touchUpInside)
     }
     
-    lazy var backgroundTapRecognizer = UITapGestureRecognizer().then {
-        $0.addTarget(self, action: #selector(didTapCancelButton))
-    }
-    
     // MARK: - Property
     
     var id: Int!
@@ -88,8 +84,6 @@ class DetailTodoVC: BaseViewController {
     }
     
     override func addViews() {
-        backgroundView.addGestureRecognizer(backgroundTapRecognizer)
-        
         [contentsTextView, completeSwitch, deleteButton, cancelButton]
             .forEach { contentView.addSubview($0) }
         
