@@ -230,20 +230,55 @@ final class API {
         _ update: UpdateTodo,
         completion: @escaping (Bool) -> Void)
     {
-        networking(
-            address: Address.updateTodo.url + "\(id)",
+//        networking(
+//            address: Address.updateTodo.url + "\(id)",
+//            method: .patch,
+//            parameter: update,
+//            model: Response.self) { response in
+//                if let response = response,
+//                   response.success {
+//                    print("Update successed!")
+//                    completion(true)
+//                } else {
+//                    print("Update failed!")
+//                    completion(false)
+//                }
+//            }
+        
+        // 임시
+        let headers: HTTPHeaders = [
+            "X-AUTH-TOKEN": LoginManager.shared.token,
+            "Content-Type": "application/json"
+        ]
+        
+        AF.request(
+            URL(string: baseURL + Address.updateTodo.url + "\(id)")!,
             method: .patch,
-            parameter: update,
-            model: Response.self) { response in
-                if let response = response,
-                   response.success {
+            parameters: update,
+            encoder: JSONParameterEncoder.default,
+            headers: headers)
+        .validate(statusCode: 200...500)
+        .responseData { response in
+            switch response.result {
+            case .success(_):
+                if response.response?.statusCode == 200 {
                     print("Update successed!")
                     completion(true)
                 } else {
                     print("Update failed!")
                     completion(false)
                 }
+            case .failure(let err):
+                if err.localizedDescription == "Response could not be serialized, input data was nil or zero length." {
+                    print("Update successed!")
+                    completion(true)
+                } else {
+                    print(err.localizedDescription)
+                    print("Update failed!")
+                    completion(false)
+                }
             }
+        }
     }
     
     static func deleteTodo(
