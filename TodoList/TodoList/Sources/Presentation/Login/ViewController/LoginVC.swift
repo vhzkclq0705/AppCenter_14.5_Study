@@ -106,7 +106,7 @@ final class LoginVC: BaseViewController {
     // MARK: - Action
 
     @objc private func didTapOKButton() {
-        let model = LoginPost(
+        let model = Login(
             id: idInputView.textField.text ?? "",
             password: passwordInputView.textField.text ?? "")
         

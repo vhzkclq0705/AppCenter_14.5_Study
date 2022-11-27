@@ -144,7 +144,7 @@ class RegisterVC: BaseViewController {
     // MARK: - Action
 
     @objc private func didTapOKButton() {
-        let model = SignUpPost(
+        let model = SignUp(
             age: Int(ageInputView.textField.text ?? "20") ?? 20,
             email: emailInputView.textField.text ?? "",
             memberId: idInputView.textField.text ?? "",
