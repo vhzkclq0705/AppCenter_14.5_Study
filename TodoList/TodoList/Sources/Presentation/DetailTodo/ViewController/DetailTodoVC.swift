@@ -22,6 +22,10 @@ class DetailTodoVC: BaseViewController {
     
     // MARK: - UI
     
+    lazy var backgroundView = UIView().then {
+        $0.backgroundColor = .clear
+    }
+    
     lazy var contentView = UIView().then {
         $0.backgroundColor = .clear
         $0.layer.borderWidth = 1
@@ -45,35 +49,48 @@ class DetailTodoVC: BaseViewController {
         $0.addTarget(self, action: #selector(didTapCancelButton), for: .touchUpInside)
     }
     
+    lazy var backgroundTapRecognizer = UITapGestureRecognizer().then {
+        $0.addTarget(self, action: #selector(didTapCancelButton))
+    }
+    
     // MARK: - Property
     
-    var todo: Todo?
+    var id: Int!
+    var todo: Todo? = nil {
+        didSet {
+            updateUI()
+        }
+    }
     var cancelHandler: (() -> Void)?
     
     // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchTodo()
     }
     
     // MARK: - Setup
     
     override func configureViewController() {
-        view.backgroundColor = .setColor(.background)
-        
-        let bool = todo?.isCompleted ?? false
-        completeSwitch.isOn = bool
-        makeStrikeThrough(bool)
+        view.backgroundColor = .clear
     }
     
     override func addViews() {
+        backgroundView.addGestureRecognizer(backgroundTapRecognizer)
+        
         [contentsLabel, completeSwitch, cancelButton]
             .forEach { contentView.addSubview($0) }
         
-        view.addSubview(contentView)
+        [backgroundView, contentView]
+            .forEach { view.addSubview($0) }
     }
     
     override func configureLayout() {
+        backgroundView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
         contentView.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.top.equalToSuperview().offset(200)
@@ -95,6 +112,25 @@ class DetailTodoVC: BaseViewController {
     }
     
     // MARK: - Func
+    
+    private func fetchTodo() {
+        API.fetchOneTodo(id) { [weak self] todo in
+            if let todo = todo {
+                self?.todo = todo
+            }
+        }
+    }
+    
+    private func updateUI() {
+        DispatchQueue.main.async {
+            guard let isCompleted = self.todo?.isCompleted else {
+                return
+            }
+            
+            self.completeSwitch.isOn = isCompleted
+            self.makeStrikeThrough(isCompleted)
+        }
+    }
     
     private func makeStrikeThrough(_ bool: Bool) {
         contentsLabel.attributedText = todo?.content.makeStrikeThrough(bool)

@@ -152,7 +152,7 @@ extension HomeVC: UITableViewDelegate,
         didSelectRowAt indexPath: IndexPath)
     {
         let vc = DetailTodoVC()
-        vc.todo = todos[indexPath.row]
+        vc.id = todos[indexPath.row].id
         vc.modalPresentationStyle = .overFullScreen
         vc.modalTransitionStyle = .crossDissolve
         
